@@ -18,8 +18,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         super.viewDidLoad()
         
         qr.scanQRCode(view: self.view, delegate: self)
+        
+        swipeDetector()
     }
-
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count > 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
@@ -63,7 +65,17 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             }
         }
     }
-    
+
+    public func swipeDetector() {
+        let directionsList: [UISwipeGestureRecognizer.Direction] = [.left, .right, .down, .up]
+        
+        for dir in directionsList {
+            let directionalSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler(swipe:)))
+            directionalSwipe.direction = dir
+            self.view.addGestureRecognizer(directionalSwipe)
+        }
+    }
+
     private func createAlert(withMessage message: String, isSafeURL safe: Bool, url: String) {
         let alert = UIAlertController(title: "QR Code", message: message, preferredStyle: .alert)
         
@@ -83,3 +95,24 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+
+extension UIViewController {
+    @objc func swipeHandler(swipe: UISwipeGestureRecognizer) {
+        switch swipe.direction.rawValue {
+        case 1: // if right swipe
+            //performSegue(withIdentifier: "switchLeft", sender: self)
+            print("PlaceholderRight")
+        case 2: // if left swipe
+            //performSegue(withIdentifier: "switchRight", sender: self)
+            print("PlaceholderLeft")
+        case 4: // if up swipe
+            //performSegue(withIdentifier: "switchDown", sender: self)
+            print("PlaceholderUp")
+        case 8: // if down swipe
+            //performSegue(withIdentifier: "switchUp", sender: self)
+            print("PlaceholderDown")
+        default:
+            break
+        }
+    }
+}
