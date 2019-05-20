@@ -12,45 +12,14 @@ import Alamofire
 import SwiftyJSON
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+    let qr = QRCode()  // Create QRCode object
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scanQRCode()
+        qr.scanQRCode(view: self.view, delegate: self)
     }
 
-    private func scanQRCode() {
-        // Create session (requried to get input from camera)
-        let session = AVCaptureSession()
-        // Define capture device as user's own device
-        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-            print("Error — could not detect capture device")
-            return
-        }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            session.addInput(input)
-        } catch {
-            print("Error — could not add camera input to video session")
-            return
-        }
-        
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
-        
-        // Set camera output to be processed by the main queue
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-        
-        var video = AVCaptureVideoPreviewLayer()  // Will display output from the camera
-        video = AVCaptureVideoPreviewLayer(session: session)
-        video.frame = view.layer.bounds  // Set the video output to fill the entire screen
-        view.layer.addSublayer(video)
-        
-        session.startRunning()
-    }
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count > 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {

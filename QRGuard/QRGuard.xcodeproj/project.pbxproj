@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		961FAE0F19505EEC7A9D8709 /* Pods_QRGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04271617D3F099E04B069998 /* Pods_QRGuard.framework */; };
+		A186A3C6229227A400BC9976 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186A3C5229227A400BC9976 /* QRCode.swift */; };
 		A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */; };
 		A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */; };
 		A19A30C7228A0D7E00C2E7C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19A30C5228A0D7E00C2E7C0 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 		04271617D3F099E04B069998 /* Pods_QRGuard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRGuard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55385EABC3E0907F0677C75A /* Pods-QRGuard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3E347436A9694D546D4580 /* Pods-QRGuard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.release.xcconfig"; sourceTree = "<group>"; };
+		A186A3C5229227A400BC9976 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		A19A30BE228A0D7E00C2E7C0 /* QRGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */,
 				A19A30CD228A0D8000C2E7C0 /* Info.plist */,
 				A19A30D5228A27F900C2E7C0 /* Assets.xcassets */,
+				A186A3C5229227A400BC9976 /* QRCode.swift */,
 			);
 			path = QRGuard;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */,
 				A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */,
+				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
