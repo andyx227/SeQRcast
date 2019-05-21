@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 import Alamofire
 import SwiftyJSON
+import CryptoSwift
+import CommonCrypto
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     let qr = QRCode()  // Create QRCode object
@@ -18,6 +20,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         super.viewDidLoad()
         
         qr.scanQRCode(view: self.view, delegate: self)
+        
+        //to test sha256
+        /*
+        if let someData = "Random string".data(using: .utf8) {
+            let hash = someData.hash(for: .sha256)
+            print("hash=\(hash.base64EncodedString()).")
+        }
+        */
         
         swipeDetector()
     }
@@ -95,6 +105,30 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 }
 
+extension Data {
+    enum Algorithm {
+        case sha256
+        
+        var digestLength: Int {
+            switch self {
+                case .sha256: return Int(CC_SHA256_DIGEST_LENGTH)
+            }
+        }
+    }
+    
+    func hash(for algorithm: Algorithm) -> Data {
+        let hashBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: algorithm.digestLength)
+        defer { hashBytes.deallocate() }
+        switch algorithm {
+        case .sha256:
+            withUnsafeBytes { (buffer) -> Void in
+                CC_SHA256(buffer.baseAddress!, CC_LONG(buffer.count), hashBytes)
+            }
+        }
+        
+        return Data(bytes: hashBytes, count: algorithm.digestLength)
+    }
+}
 
 extension UIViewController {
     @objc func swipeHandler(swipe: UISwipeGestureRecognizer) {
