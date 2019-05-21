@@ -103,6 +103,79 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    // digital signature
+    func test() {
+        let string: String = "encrypted text"
+        let keyPair: (publicKey: SecKey?, privateKey: SecKey?) = generateKeyPair()
+        let signature: NSData? = signString(string, privateKey: keyPair.privateKey!)
+        let result: Bool = verifyString(string, signature: signature!, publicKey: keyPair.publicKey!)
+        print(result)
+    }
+    
+    func generateKeyPair () -> (publicKey: SecKey?, privateKey: SecKey?) {
+        let parameters: [String: AnyObject] = [
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+            kSecAttrKeySizeInBits as String: 2048
+        ]
+        var publicKey: SecKey?
+        var privateKey: SecKey?
+        let osStatus: OSStatus = SecKeyGeneratePair(parameters, &publicKey, &privateKey)
+        
+        switch osStatus {
+        case noErr:
+            return (publicKey, privateKey)
+        default:
+            return (nil, nil)
+        }
+    }
+    
+    func signString(string: String, privateKey: SecKey) -> NSData? {
+        let digest = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))!
+        let stringData: NSData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+        CC_SHA256(stringData.bytes, CC_LONG(stringData.length), UnsafeMutablePointer<UInt8>(digest.mutableBytes))
+        let signedData: NSMutableData = NSMutableData(length: SecKeyGetBlockSize(privateKey))!
+        var signedDataLength: Int = signedData.length
+        
+        let err: OSStatus = SecKeyRawSign(
+            privateKey,
+            SecPadding.PKCS1SHA256,
+            UnsafePointer<UInt8>(digest.bytes),
+            digest.length,
+            UnsafeMutablePointer<UInt8>(signedData.mutableBytes),
+            &signedDataLength
+        )
+        
+        switch err {
+        case noErr:
+            return signedData
+        default:
+            return nil
+        }
+        
+    }
+    
+    func verifyString(string: String, signature: NSData, publicKey: SecKey) -> Bool {
+        let digest = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))!
+        let stringData: NSData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+        CC_SHA256(stringData.bytes, CC_LONG(stringData.length), UnsafeMutablePointer<UInt8>(digest.mutableBytes))
+        
+        let err: OSStatus = SecKeyRawVerify(
+            publicKey,
+            SecPadding.PKCS1SHA256,
+            UnsafePointer<UInt8>(digest.bytes),
+            digest.length,
+            UnsafeMutablePointer<UInt8>(signature.bytes),
+            signature.length
+        )
+        
+        switch err {
+        case noErr:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 extension Data {
