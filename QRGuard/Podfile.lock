@@ -2,23 +2,29 @@ PODS:
   - Alamofire (4.8.1)
   - CryptoSwift (1.0.0)
   - SwiftyJSON (4.2.0)
+  - SwiftyRSA (1.5.0):
+    - SwiftyRSA/ObjC (= 1.5.0)
+  - SwiftyRSA/ObjC (1.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - CryptoSwift
   - SwiftyJSON (~> 4.0)
+  - SwiftyRSA
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CryptoSwift
     - SwiftyJSON
+    - SwiftyRSA
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
 
-PODFILE CHECKSUM: b562b9c5c51f38352834750e9261709e4cfdfd1e
+PODFILE CHECKSUM: 25a271374aa8b434d530d76c023cc5abac154b7a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

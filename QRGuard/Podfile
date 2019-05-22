@@ -8,5 +8,6 @@ target 'QRGuard' do
   # Pods for QRGuard
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'SwiftyRSA'
   pod 'CryptoSwift'
 end

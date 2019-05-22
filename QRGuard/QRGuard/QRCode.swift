@@ -58,4 +58,20 @@ class QRCode {
         
         return scaledQRCode
     }
+    
+    public static func generateQRCode(message input: String) -> CIImage? {
+        let data = input.data(using: String.Encoding.ascii)
+        
+        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {return nil}
+        qrFilter.setValue(data, forKey: "inputMessage")
+        
+        let qrOutput = qrFilter.outputImage
+        guard let qrCode = qrOutput else {return nil}
+        
+        // Scale the QR code so it doesn't look blurry
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledQRCode = qrCode.transformed(by: transform)
+        
+        return scaledQRCode
+    }
 }
