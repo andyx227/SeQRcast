@@ -31,6 +31,7 @@
 		A19A30CB228A0D8000C2E7C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A19A30CD228A0D8000C2E7C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19A30D5228A27F900C2E7C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A3634A432296A788008167B5 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = QRGuard/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		A19A30C0228A0D7E00C2E7C0 /* QRGuard */ = {
 			isa = PBXGroup;
 			children = (
+				A3634A432296A788008167B5 /* MyPlayground.playground */,
 				A39D43E922956837009D760B /* Model */,
 				A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */,
 				A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */,

@@ -86,12 +86,12 @@ class SubscribedChannel: Channel {
 class MyChannel: Channel {
     
     init(at index: Int) {
-        super.init(json: JSON(Storage.subscribedChannels[index]))
+        super.init(json: JSON(Storage.myChannels[index]))
     }
     
     init?(named name: String) {
         super.init()
-        let list = JSON(Storage.subscribedChannels)
+        let list = JSON(Storage.myChannels)
         for (_, json) in list {
             if json["name"].stringValue == name {
                 return nil
@@ -112,8 +112,8 @@ class MyChannel: Channel {
     }
     
     func getRandom32Bytes() -> String {
-        var data = Data(count: Channel.ID_LENGTH)
-        let _ = data.withUnsafeMutableBytes{ SecRandomCopyBytes(kSecRandomDefault, Channel.ID_LENGTH, $0.baseAddress!) }
+        var data = Data(count: Channel.ID_BYTES)
+        let _ = data.withUnsafeMutableBytes{ SecRandomCopyBytes(kSecRandomDefault, Channel.ID_BYTES, $0.baseAddress!) }
         
         return data.base64EncodedString()
     }

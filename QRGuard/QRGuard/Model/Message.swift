@@ -16,6 +16,10 @@ enum MessageType: Int {
     case url = 1
 }
 
+enum MessageFailure {
+    case expired, notSubscribed, verificationFailed, others, none
+}
+
 class Message {
     var type: MessageType
     var expirationDate: Date
@@ -34,31 +38,22 @@ class Message {
         self.channel = channel
     }
     
-    static func decrypt(data: String) throws {
+    static func decrypt(data: String) throws -> (Message?, MessageFailure) {
         let idIndex = data.index(data.startIndex, offsetBy: Channel.ID_LENGTH)
         let id = String(data[data.startIndex ..< idIndex])
-        var key = ""
-        var name = ""
         
-        for (_, json) in JSON(Storage.subscribedChannels) {
-            if json["id"].stringValue == id {
-                name = json["name"].stringValue
-                key = json["key"].stringValue
-            }
-        }
-        
-        if key.count == 0 {
-            
+        guard let channel = SubscribedChannel(withID: id) else {
+            return (nil, .notSubscribed)
         }
         
         let signatureIndex = data.index(idIndex, offsetBy: Message.SIGNATURE_LENGTH)
-        let signature = String(data[idIndex ..< signatureIndex])
+        let sign = String(data[idIndex ..< signatureIndex])
         let body = String(data[signatureIndex ..< data.endIndex])
-        let aes = try AES(key: key, iv: Message.IV)
+        let aes = try AES(key: Data(base64Encoded: channel.key)!.bytes, blockMode: CBC(iv: Message.IV.bytes))
         guard let decrypted = try String(bytes: body.decryptBase64(cipher: aes), encoding: .utf8),
             let t = Int(String(decrypted.prefix(1)))
             else {
-            return
+            return (nil, .others)
         }
         
         let typeIndex = decrypted.index(decrypted.startIndex, offsetBy: 1)
@@ -68,17 +63,27 @@ class Message {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Message.DATE_FORMAT
         
+        let signature = try Signature(base64Encoded: sign)
+        let doc = "\(channel.name)\(decrypted)"
+        let document = try ClearMessage(string: doc, using: .utf8)
+        let publicKey = try PublicKey(base64Encoded: channel.publicKey)
+        if try !document.verify(with: publicKey, signature: signature, digestType: .sha256) {
+            return (nil, .verificationFailed)
+        }
         
         guard let type = MessageType(rawValue: t),
             let date = dateFormatter.date(from: dateString)
             else {
-            return
+            return (nil, .others)
         }
         
+        if date.timeIntervalSince(Date()) < 0.0 {
+            return (nil, .expired)
+        }
         
+        let message = Message(type: type, expires: date, withContent: content, for: channel)
         
-        
-        
+        return (message, .none)
     }
     
     func encrypt() throws -> CIImage? {
