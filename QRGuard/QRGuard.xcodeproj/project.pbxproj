@@ -14,6 +14,8 @@
 		A19A30C7228A0D7E00C2E7C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19A30C5228A0D7E00C2E7C0 /* Main.storyboard */; };
 		A19A30CC228A0D8000C2E7C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */; };
 		A19A30D6228A27F900C2E7C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A19A30D5228A27F900C2E7C0 /* Assets.xcassets */; };
+		A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */; };
+		A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */; };
 		A39D43EB229568A5009D760B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EA229568A5009D760B /* Channel.swift */; };
 		A39D43ED229568BD009D760B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EC229568BD009D760B /* Message.swift */; };
 		A39D43EF22956918009D760B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EE22956918009D760B /* Storage.swift */; };
@@ -32,6 +34,8 @@
 		A19A30CD228A0D8000C2E7C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19A30D5228A27F900C2E7C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3634A432296A788008167B5 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = QRGuard/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewController.swift; sourceTree = "<group>"; };
+		A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedChannelsTableViewController.swift; sourceTree = "<group>"; };
 		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				A19A30D5228A27F900C2E7C0 /* Assets.xcassets */,
 				A186A3C5229227A400BC9976 /* QRCode.swift */,
 				A39D43EE22956918009D760B /* Storage.swift */,
+				A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */,
+				A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */,
 			);
 			path = QRGuard;
 			sourceTree = "<group>";
@@ -242,6 +248,8 @@
 				A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */,
 				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
 				A39D43EF22956918009D760B /* Storage.swift in Sources */,
+				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
+				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

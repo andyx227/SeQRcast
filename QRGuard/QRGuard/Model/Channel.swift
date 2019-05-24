@@ -14,6 +14,7 @@ class Channel {
     var name: String
     var id: String
     var key: String
+    var publicKey: String
     
     static let ID_BYTES = 32
     static let KEY_BYTES = 32
@@ -27,27 +28,50 @@ class Channel {
         name = ""
         id = ""
         key = ""
+        publicKey = ""
     }
     
-    init(name: String, id: String, key: String) {
+    init(name: String, id: String, key: String, publicKey: String) {
         self.name = name
         self.id = id
         self.key = key
+        self.publicKey = publicKey
     }
     
     init(json: JSON) {
         self.name = json["name"].stringValue
         self.id = json["id"].stringValue
         self.key = json["key"].stringValue
+        self.publicKey = json["publicKey"].stringValue
+    }
+    
+    convenience init?(withID id: String) {
+        let sc = JSON(Storage.subscribedChannels)
+        for (_, json) in sc {
+            if json["id"].stringValue == id {
+                self.init(json: json)
+                return
+            }
+        }
+        let mc = JSON(Storage.myChannels)
+        for (_, json) in mc {
+            if json["id"].stringValue == id {
+                self.init(json: json)
+                return
+            }
+        }
+        return nil
     }
 }
 
+enum SubscriptionFailure {
+    case alreadySubscribed, isMyChannel, none
+}
+
 class SubscribedChannel: Channel {
-    var publicKey: String
     
     init(at index: Int) {
         let json = JSON(Storage.subscribedChannels[index])
-        publicKey = json["publicKey"].stringValue
         super.init(json: json)
     }
     
@@ -55,7 +79,6 @@ class SubscribedChannel: Channel {
         let list = JSON(Storage.subscribedChannels)
         for (_, json) in list {
             if json["id"].stringValue == id {
-                publicKey = json["publicKey"].stringValue
                 super.init(json: json)
                 return
             }
@@ -63,7 +86,7 @@ class SubscribedChannel: Channel {
         return nil
     }
     
-    static func subscribe(with data: String) throws {
+    static func subscribe(with data: String) throws -> SubscriptionFailure {
         let publicKeyIndex = data.index(data.startIndex, offsetBy: Channel.PUBLIC_KEY_LENGTH)
         let publicKey = String(data[data.startIndex ..< publicKeyIndex])
         
@@ -79,7 +102,15 @@ class SubscribedChannel: Channel {
         let id = String(message[keyIndex ..< idIndex])
         let name = String(message[idIndex ..< message.endIndex])
         
+        if let _ = SubscribedChannel(withID: id) {
+            return .alreadySubscribed
+        }
+        if let _ = MyChannel(withID: id) {
+            return .isMyChannel
+        }
+        
         Storage.subscribedChannels.append(["name": name, "id": id, "key": key, "publicKey": publicKey])
+        return .none
     }
 }
 
@@ -87,6 +118,19 @@ class MyChannel: Channel {
     
     init(at index: Int) {
         super.init(json: JSON(Storage.myChannels[index]))
+        self.publicKey = Storage.publicKey
+    }
+    
+    init?(withID id: String) {
+        let list = JSON(Storage.myChannels)
+        for (_, json) in list {
+            if json["id"].stringValue == id {
+                super.init(json: json)
+                self.publicKey = Storage.publicKey
+                return
+            }
+        }
+        return nil
     }
     
     init?(named name: String) {
@@ -100,6 +144,8 @@ class MyChannel: Channel {
         self.name = name
         self.id = getRandom32Bytes()
         self.key = getRandom32Bytes()
+        self.publicKey = Storage.publicKey
+        Storage.myChannels.append(["name": self.name, "id": self.id, "key": self.key])
     }
     
     func encrypt(with publicKey: String) throws -> CIImage? {
@@ -111,7 +157,7 @@ class MyChannel: Channel {
         return QRCode.generateQRCode(message: Storage.publicKey + encrypted.base64String)
     }
     
-    func getRandom32Bytes() -> String {
+    private func getRandom32Bytes() -> String {
         var data = Data(count: Channel.ID_BYTES)
         let _ = data.withUnsafeMutableBytes{ SecRandomCopyBytes(kSecRandomDefault, Channel.ID_BYTES, $0.baseAddress!) }
         

@@ -42,7 +42,7 @@ class Message {
         let idIndex = data.index(data.startIndex, offsetBy: Channel.ID_LENGTH)
         let id = String(data[data.startIndex ..< idIndex])
         
-        guard let channel = SubscribedChannel(withID: id) else {
+        guard let channel = Channel(withID: id) else {
             return (nil, .notSubscribed)
         }
         
