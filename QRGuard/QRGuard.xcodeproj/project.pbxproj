@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FB4D77D2299DA60004B81BB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4D77C2299DA60004B81BB /* Message.swift */; };
 		961FAE0F19505EEC7A9D8709 /* Pods_QRGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04271617D3F099E04B069998 /* Pods_QRGuard.framework */; };
 		A186A3C6229227A400BC9976 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186A3C5229227A400BC9976 /* QRCode.swift */; };
 		A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		04271617D3F099E04B069998 /* Pods_QRGuard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRGuard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FB4D77C2299DA60004B81BB /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		55385EABC3E0907F0677C75A /* Pods-QRGuard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3E347436A9694D546D4580 /* Pods-QRGuard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.release.xcconfig"; sourceTree = "<group>"; };
 		A186A3C5229227A400BC9976 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				A186A3C5229227A400BC9976 /* QRCode.swift */,
 				A39D43EE22956918009D760B /* Storage.swift */,
 				A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */,
+				3FB4D77C2299DA60004B81BB /* Message.swift */,
 				A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */,
 			);
 			path = QRGuard;
@@ -249,6 +252,7 @@
 				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
 				A39D43EF22956918009D760B /* Storage.swift in Sources */,
 				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
+				3FB4D77D2299DA60004B81BB /* Message.swift in Sources */,
 				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
