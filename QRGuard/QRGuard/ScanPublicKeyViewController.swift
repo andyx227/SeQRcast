@@ -23,7 +23,6 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
         importImageButton.layer.shadowOpacity = 1.0
         importImageButton.layer.shadowRadius = 10.0
         importImageButton.layer.masksToBounds = false
-        ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
         
         QRCode.scanQRCode(view: self.view, delegate: self)
         
@@ -34,6 +33,7 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -47,7 +47,7 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 if object.type == AVMetadataObject.ObjectType.qr {  // If scanning public key qr code
                     if let publicKey = object.stringValue {
-                        if checkPublicKeyFormat(publicKey) && ScanPublicKeyViewController.scanned {
+                        if checkPublicKeyFormat(publicKey) && ScanPublicKeyViewController.scanned == false {
                             ScanPublicKeyViewController.scanned = true
                             // Encrypt channel data and get the encrypted QR code
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
