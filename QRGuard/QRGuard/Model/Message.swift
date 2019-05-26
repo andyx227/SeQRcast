@@ -46,12 +46,18 @@ class Message {
         }
         
         let data = data.dropFirst(QR_TYPE_MESSAGE.count)
+        
+        if data.count < Channel.ID_LENGTH + Message.SIGNATURE_LENGTH {
+            return (nil, .invalid)
+        }
+        
         let idIndex = data.index(data.startIndex, offsetBy: Channel.ID_LENGTH)
         let id = String(data[data.startIndex ..< idIndex])
         
         guard let channel = Channel(withID: id) else {
             return (nil, .notSubscribed)
         }
+        
         
         let signatureIndex = data.index(idIndex, offsetBy: Message.SIGNATURE_LENGTH)
         let sign = String(data[idIndex ..< signatureIndex])
@@ -61,6 +67,10 @@ class Message {
             let t = Int(String(decrypted.prefix(1)))
             else {
             return (nil, .others)
+        }
+        
+        if decrypted.count < Message.DATE_FORMAT.count + 2 {
+            return (nil, .invalid)
         }
         
         let typeIndex = decrypted.index(decrypted.startIndex, offsetBy: 1)

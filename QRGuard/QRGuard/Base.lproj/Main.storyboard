@@ -246,7 +246,7 @@
             </objects>
             <point key="canvasLocation" x="1880.8" y="-658.02098950524737"/>
         </scene>
-        <!--ChannelQR View Controller-->
+        <!--Share Channel QR Code-->
         <scene sceneID="w4d-GS-yV9">
             <objects>
                 <viewController storyboardIdentifier="channelQRViewController" id="fUr-Dn-ZXs" customClass="ChannelQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
@@ -292,6 +292,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xmr-ns-ZzE"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Share Channel QR Code" id="lG5-yY-5GT">
+                        <barButtonItem key="rightBarButtonItem" title="Return" id="VFC-O8-AJf">
+                            <connections>
+                                <action selector="returnToMain:" destination="fUr-Dn-ZXs" id="lpP-3o-A05"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="exportImageButton" destination="tb7-AY-ofK" id="QIZ-Bp-muL"/>
                         <outlet property="imageView" destination="fh3-GP-sB1" id="kGY-tE-A4z"/>

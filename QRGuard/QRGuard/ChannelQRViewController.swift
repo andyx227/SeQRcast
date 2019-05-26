@@ -54,6 +54,11 @@ class ChannelQRViewController: UIViewController {
         }
     }
     
+    @IBAction func returnToMain(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             showAlert(withTitle: "QR Code Export Error", message: error.localizedDescription)

@@ -62,6 +62,33 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if qrString.count == 0 {
             self.showAlert(withTitle: "QR Code Import Error", message: "The imported image does not contain a QR code.")
         }
+        
+        switch String(qrString.prefix(QR_TYPE_MESSAGE.count)) {
+        case QR_TYPE_MESSAGE:
+            ()
+        case QR_TYPE_CHANNEL_SHARE: registerNewChannel(with: qrString)
+        default: ()
+        }
+    }
+    
+    func registerNewChannel(with data: String) {
+        do {
+            let result = try SubscribedChannel.subscribe(with: data)
+            
+            switch result {
+            case (nil, .alreadySubscribed):
+                showAlert(withTitle: "Channel Subscription Error", message: "You are already subscribed to this channel.")
+            case (nil, .isMyChannel):
+                showAlert(withTitle: "Channel Subscription Error", message: "You cannot be subscribed to a channel you manage.")
+            case (nil,.invalid):
+                showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
+            case (.some(let channel), .none):
+                showAlert(withTitle: "Subscribed", message: "You have successfully subscribed to \(channel.name).")
+            default: ()
+            }
+        } catch {
+            showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
+        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

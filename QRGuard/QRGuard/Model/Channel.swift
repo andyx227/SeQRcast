@@ -70,6 +70,10 @@ enum SubscriptionFailure {
 
 class SubscribedChannel: Channel {
     
+    override init(json: JSON) {
+        super.init(json: json)
+    }
+    
     init(at index: Int) {
         let json = JSON(Storage.subscribedChannels[index])
         super.init(json: json)
@@ -86,12 +90,17 @@ class SubscribedChannel: Channel {
         return nil
     }
     
-    static func subscribe(with data: String) throws -> SubscriptionFailure {
+    static func subscribe(with data: String) throws -> (SubscribedChannel?, SubscriptionFailure) {
         if String(data.prefix(QR_TYPE_CHANNEL_SHARE.count)) != QR_TYPE_CHANNEL_SHARE {
-            return .invalid
+            return (nil, .invalid)
         }
         
         let data = data.dropFirst(QR_TYPE_CHANNEL_SHARE.count)
+        
+        if data.count < Channel.PUBLIC_KEY_LENGTH {
+            return (nil, .invalid)
+        }
+        
         let publicKeyIndex = data.index(data.startIndex, offsetBy: Channel.PUBLIC_KEY_LENGTH)
         let publicKey = String(data[data.startIndex ..< publicKeyIndex])
         
@@ -99,8 +108,12 @@ class SubscribedChannel: Channel {
         let privateKey = try PrivateKey(base64Encoded: Storage.privateKey)
         let encryted = try EncryptedMessage(base64Encoded: remain)
         let decrypted = try encryted.decrypted(with: privateKey, padding: .PKCS1)
-        
         let message = try decrypted.string(encoding: .utf8)
+        
+        if message.count < Channel.KEY_LENGTH + Channel.ID_LENGTH + 1 {
+            return (nil, .invalid)
+        }
+        
         let keyIndex = message.index(message.startIndex, offsetBy: Channel.KEY_LENGTH)
         let idIndex = message.index(keyIndex, offsetBy: Channel.ID_LENGTH)
         let key = String(message[message.startIndex ..< keyIndex])
@@ -108,14 +121,15 @@ class SubscribedChannel: Channel {
         let name = String(message[idIndex ..< message.endIndex])
         
         if let _ = SubscribedChannel(withID: id) {
-            return .alreadySubscribed
+            return (nil, .alreadySubscribed)
         }
         if let _ = MyChannel(withID: id) {
-            return .isMyChannel
+            return (nil, .isMyChannel)
         }
         
-        Storage.subscribedChannels.append(["name": name, "id": id, "key": key, "publicKey": publicKey])
-        return .none
+        let json = ["name": name, "id": id, "key": key, "publicKey": publicKey]
+        Storage.subscribedChannels.append(json)
+        return (SubscribedChannel(json: JSON(json)), .none)
     }
 }
 
