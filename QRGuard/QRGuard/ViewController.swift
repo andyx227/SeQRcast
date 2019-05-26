@@ -16,11 +16,50 @@ import CommonCrypto
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     let qr = QRCode()  // Create QRCode object
     
+    @IBOutlet weak var importImageButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        importImageButton.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        importImageButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        importImageButton.layer.shadowOpacity = 1.0
+        importImageButton.layer.shadowRadius = 1.0
+        importImageButton.layer.masksToBounds = false
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
         qr.scanQRCode(view: self.view, delegate: self)
-        swipeDetector()
+        //swipeDetector()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @IBAction func importImage(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.allowsEditing = false
+            picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
+            picker.delegate = self
+            self.present(picker, animated: true)
+        }
+    }
+    
+    
+    func checkImportedImage(_ image: UIImage) {
+        let qrString = QRCode.readFromImage(image)
+        
+        if qrString.count == 0 {
+            self.showAlert(withTitle: "QR Code Import Error", message: "The imported image does not contain a QR code.")
+        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -97,10 +136,20 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 }
             }
     }
+    
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Confirm", style: .cancel) { (alertAction) in
+            
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
 }
 
 extension UIViewController {
     @objc func swipeHandler(swipe: UISwipeGestureRecognizer) {
+        /*
         switch swipe.direction.rawValue {
         case 1: // if right swipe
             //performSegue(withIdentifier: "switchLeft", sender: self)
@@ -116,6 +165,19 @@ extension UIViewController {
             print("PlaceholderDown")
         default:
             break
+        }
+ */
+    }
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let importedImage = info[.originalImage] as? UIImage else {
+            dismiss(animated: true)
+            return
+        }
+        dismiss(animated: true) {
+            self.checkImportedImage(importedImage)
         }
     }
 }

@@ -65,7 +65,7 @@ class Channel {
 }
 
 enum SubscriptionFailure {
-    case alreadySubscribed, isMyChannel, none
+    case alreadySubscribed, isMyChannel, invalid, none
 }
 
 class SubscribedChannel: Channel {
@@ -87,6 +87,11 @@ class SubscribedChannel: Channel {
     }
     
     static func subscribe(with data: String) throws -> SubscriptionFailure {
+        if String(data.prefix(QR_TYPE_CHANNEL_SHARE.count)) != QR_TYPE_CHANNEL_SHARE {
+            return .invalid
+        }
+        
+        let data = data.dropFirst(QR_TYPE_CHANNEL_SHARE.count)
         let publicKeyIndex = data.index(data.startIndex, offsetBy: Channel.PUBLIC_KEY_LENGTH)
         let publicKey = String(data[data.startIndex ..< publicKeyIndex])
         
@@ -154,7 +159,7 @@ class MyChannel: Channel {
         let message = try ClearMessage(string: data, using: .utf8)
         let encrypted = try message.encrypted(with: pubKey, padding: .PKCS1)
         
-        return QRCode.generateQRCode(message: Storage.publicKey + encrypted.base64String)
+        return QRCode.generateQRCode(message: QR_TYPE_CHANNEL_SHARE + Storage.publicKey + encrypted.base64String)
     }
     
     private func getRandom32Bytes() -> String {

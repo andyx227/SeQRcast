@@ -17,8 +17,10 @@ enum MessageType: Int {
 }
 
 enum MessageFailure {
-    case expired, notSubscribed, verificationFailed, others, none
+    case expired, notSubscribed, verificationFailed, invalid, others, none
 }
+
+
 
 class Message {
     var type: MessageType
@@ -39,6 +41,11 @@ class Message {
     }
     
     static func decrypt(data: String) throws -> (Message?, MessageFailure) {
+        if String(data.prefix(QR_TYPE_MESSAGE.count)) != QR_TYPE_MESSAGE {
+            return (nil, .invalid)
+        }
+        
+        let data = data.dropFirst(QR_TYPE_MESSAGE.count)
         let idIndex = data.index(data.startIndex, offsetBy: Channel.ID_LENGTH)
         let id = String(data[data.startIndex ..< idIndex])
         
@@ -103,6 +110,6 @@ class Message {
             return QRCode.generateQRCode(message: "")
         }
         
-        return QRCode.generateQRCode(message: channel.id + signature.base64String + encrypted)
+        return QRCode.generateQRCode(message: QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted)
     }
 }
