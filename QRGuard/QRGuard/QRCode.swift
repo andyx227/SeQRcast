@@ -11,7 +11,7 @@ import UIKit
 import AVFoundation
 
 class QRCode {
-    public func scanQRCode(view: UIView, delegate: AVCaptureMetadataOutputObjectsDelegate) {
+    public static func scanQRCode(view: UIView, delegate: AVCaptureMetadataOutputObjectsDelegate) {
         // Create session (requried to get input from camera)
         let session = AVCaptureSession()
         // Define capture device as user's own device
@@ -41,22 +41,6 @@ class QRCode {
         view.layer.addSublayer(video)
         
         session.startRunning()
-    }
-    
-    public func generateQRCode(message input: String) -> CIImage? {
-        let data = input.data(using: String.Encoding.ascii)
-        
-        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {return nil}
-        qrFilter.setValue(data, forKey: "inputMessage")
-        
-        let qrOutput = qrFilter.outputImage
-        guard let qrCode = qrOutput else {return nil}
-        
-        // Scale the QR code so it doesn't look blurry
-        let transform = CGAffineTransform(scaleX: 10, y: 10)
-        let scaledQRCode = qrCode.transformed(by: transform)
-        
-        return scaledQRCode
     }
     
     public static func generateQRCode(message input: String) -> CIImage? {

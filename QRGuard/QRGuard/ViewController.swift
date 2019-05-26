@@ -14,13 +14,26 @@ import CryptoSwift
 import CommonCrypto
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    let qr = QRCode()  // Create QRCode object
+    @IBOutlet weak var myChannelsBtn: UIButton!
+    @IBOutlet weak var subscribedChannelsBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        qr.scanQRCode(view: self.view, delegate: self)
+        QRCode.scanQRCode(view: self.view, delegate: self)
+        view.bringSubviewToFront(myChannelsBtn)
+        view.bringSubviewToFront(subscribedChannelsBtn)
         swipeDetector()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

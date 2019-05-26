@@ -55,6 +55,10 @@ class MyChannelsTableViewController: UITableViewController {
         }
         let share = UIAlertAction(title: "Share", style: .default) { (action) in
             // move to scan public key screen
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let scanPublicKeyVC = storyboard.instantiateViewController(withIdentifier: "scanPublicKeyViewController") as! ScanPublicKeyViewController
+            scanPublicKeyVC.channelData = MyChannel(withID: self.channels[indexPath.row].id)
+            self.navigationController?.pushViewController(scanPublicKeyVC, animated: true)
         }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             self.delete(at: indexPath)

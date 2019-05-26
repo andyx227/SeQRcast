@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vPY-kk-Ekg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yVK-ke-hgd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="poN-P4-gAA">
+            <objects>
+                <navigationController id="yVK-ke-hgd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="S5t-5X-dzB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="heI-TF-34u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mU6-wO-iZz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-548" y="86"/>
+        </scene>
         <!--My Channels-->
         <scene sceneID="iME-Vf-L5p">
             <objects>
@@ -55,6 +71,84 @@
             </objects>
             <point key="canvasLocation" x="1076" y="-658"/>
         </scene>
+        <!--Scan Public Key View Controller-->
+        <scene sceneID="F5r-Px-FFA">
+            <objects>
+                <viewController storyboardIdentifier="scanPublicKeyViewController" id="kMS-2z-wca" customClass="ScanPublicKeyViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q9Q-IW-GvO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfW-Fb-C2g">
+                                <rect key="frame" x="16" y="602" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="dF3-6Q-HRC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="thD-wx-K6Q"/>
+                                </constraints>
+                                <state key="normal" image="back_icon"/>
+                                <connections>
+                                    <action selector="back:" destination="kMS-2z-wca" eventType="touchUpInside" id="ULx-pF-YJA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UfW-Fb-C2g" firstAttribute="top" secondItem="GNb-AJ-Nfx" secondAttribute="top" constant="582" id="Byx-HW-TfK"/>
+                            <constraint firstItem="UfW-Fb-C2g" firstAttribute="leading" secondItem="GNb-AJ-Nfx" secondAttribute="leading" constant="16" id="FjG-2y-sIB"/>
+                            <constraint firstItem="GNb-AJ-Nfx" firstAttribute="trailing" secondItem="UfW-Fb-C2g" secondAttribute="trailing" constant="314" id="pfc-fz-FaR"/>
+                            <constraint firstItem="GNb-AJ-Nfx" firstAttribute="bottom" secondItem="UfW-Fb-C2g" secondAttribute="bottom" constant="20" id="zmm-7g-x4X"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GNb-AJ-Nfx"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="UfW-Fb-C2g" id="Icm-3a-jhM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="COM-et-gEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1881" y="-658"/>
+        </scene>
+        <!--ChannelQR View Controller-->
+        <scene sceneID="hiS-a7-Byg">
+            <objects>
+                <viewController storyboardIdentifier="channelQRViewController" id="fb7-Rp-zVR" customClass="ChannelQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uxn-b8-FRe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please let your subscriber scan the QR code below" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USz-Mi-SCV">
+                                <rect key="frame" x="44" y="127" width="287" height="45"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oJ5-jb-EOj">
+                                <rect key="frame" x="67" y="213" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="6hZ-5y-afV"/>
+                                    <constraint firstAttribute="width" constant="240" id="yBc-Y0-PtG"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1bR-7a-YGe" firstAttribute="trailing" secondItem="oJ5-jb-EOj" secondAttribute="trailing" constant="68" id="GzS-JI-OOM"/>
+                            <constraint firstItem="oJ5-jb-EOj" firstAttribute="top" secondItem="USz-Mi-SCV" secondAttribute="bottom" constant="41" id="HEk-xD-tSW"/>
+                            <constraint firstItem="1bR-7a-YGe" firstAttribute="trailing" secondItem="USz-Mi-SCV" secondAttribute="trailing" constant="44" id="XLQ-ik-1h7"/>
+                            <constraint firstItem="oJ5-jb-EOj" firstAttribute="leading" secondItem="1bR-7a-YGe" secondAttribute="leading" constant="67" id="eNi-Ik-PuJ"/>
+                            <constraint firstItem="USz-Mi-SCV" firstAttribute="top" secondItem="1bR-7a-YGe" secondAttribute="top" constant="107" id="eQG-od-AZZ"/>
+                            <constraint firstItem="USz-Mi-SCV" firstAttribute="leading" secondItem="1bR-7a-YGe" secondAttribute="leading" constant="44" id="wKt-bI-pW0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1bR-7a-YGe"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="oJ5-jb-EOj" id="5Bx-wQ-gyW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dmc-uz-IMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2688.8000000000002" y="-658.02098950524737"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -63,40 +157,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Message" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0b0-H6-GdE">
-                                <rect key="frame" x="37" y="152" width="300" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xta-b2-mY6">
+                                <rect key="frame" x="16" y="553" width="163" height="36"/>
+                                <color key="backgroundColor" red="0.91612468274111669" green="0.69800469802096965" blue="0.53846941845384255" alpha="0.6033015839041096" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xta-b2-mY6" secondAttribute="height" multiplier="163:36" id="QKc-39-DwZ"/>
+                                    <constraint firstAttribute="height" constant="36" id="SyT-oM-YrK"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="z0M-W8-fRX"/>
+                                </constraints>
+                                <state key="normal" title="My Channels">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="KfY-93-lay" kind="show" id="xGC-Bf-NJF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNw-rs-HfS">
+                                <rect key="frame" x="16" y="597" width="163" height="36"/>
+                                <color key="backgroundColor" red="0.2446045655825107" green="0.69500378174123001" blue="0.95399746192893398" alpha="0.6033015839041096" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TNw-rs-HfS" secondAttribute="height" multiplier="163:36" id="Jyd-tI-9p1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="WaZ-Sk-2mn"/>
+                                    <constraint firstAttribute="height" constant="36" id="hRh-Pt-SBy"/>
+                                </constraints>
+                                <state key="normal" title="Subscribed Channels">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="BGO-ng-Hod" kind="show" id="fi9-oG-AO9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="TNw-rs-HfS" firstAttribute="top" secondItem="Xta-b2-mY6" secondAttribute="bottom" constant="8" id="4nL-e2-JgH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TNw-rs-HfS" secondAttribute="trailing" constant="196" id="AoT-tj-VHz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TNw-rs-HfS" secondAttribute="bottom" constant="34" id="QbS-6X-83J"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xta-b2-mY6" secondAttribute="trailing" constant="196" id="TOC-cO-bco"/>
+                            <constraint firstItem="TNw-rs-HfS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="XEE-mn-AQg"/>
+                            <constraint firstItem="TNw-rs-HfS" firstAttribute="top" secondItem="Xta-b2-mY6" secondAttribute="bottom" constant="8" id="YEY-Ln-0YG"/>
+                            <constraint firstItem="Xta-b2-mY6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="w3g-Og-SdX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xoe-uP-vCc"/>
+                    <connections>
+                        <outlet property="myChannelsBtn" destination="Xta-b2-mY6" id="IAk-F7-Ab7"/>
+                        <outlet property="subscribedChannelsBtn" destination="TNw-rs-HfS" id="h7Q-OU-hnf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="85.907046476761622"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WDE-R4-fXj">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vPY-kk-Ekg" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wcr-Hw-cZp">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ovn-kX-UfB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yiZ-nn-2Ko" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="82" y="86"/>
+            <point key="canvasLocation" x="351" y="86"/>
         </scene>
         <!--Subscribed Channels-->
         <scene sceneID="Qye-3E-vQd">
@@ -138,4 +260,7 @@
             <point key="canvasLocation" x="1076" y="809"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back_icon" width="50" height="50"/>
+    </resources>
 </document>
