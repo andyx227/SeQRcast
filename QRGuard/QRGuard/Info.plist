@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SeQRcast requires access to your location for logging past messages.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>SeQRcast requires access to Photo Library to export QR codes.</string>
 	<key>CFBundleDevelopmentRegion</key>

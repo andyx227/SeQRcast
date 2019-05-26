@@ -64,8 +64,8 @@ class ChannelQRViewController: UIViewController {
     
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            showAlert(withTitle: "QR Code Export Error", message: error.localizedDescription)
+        if let _ = error {
+            showAlert(withTitle: "QR Code Export Error", message: "There was an error exporting QR code. Please try again.")
         }
         showAlert(withTitle: "QR Code Exported", message: "The QR code was successfully exported.")
     }

@@ -14,6 +14,15 @@ import CryptoSwift
 enum MessageType: Int {
     case text = 0
     case url = 1
+    
+    var string: String {
+        get {
+            switch self {
+            case .text: return "Text"
+            case .url: return "URL"
+            }
+        }
+    }
 }
 
 enum MessageFailure {
@@ -128,5 +137,45 @@ class Message {
         }
         
         return QRCode.generateQRCode(message: QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted)
+    }
+}
+
+class MessageLog: Message {
+    
+    var latitude: Double
+    var longitude: Double
+    var encoded: String
+    var date: Date
+    
+    override init() {
+        self.latitude = 999.0
+        self.longitude = 999.0
+        self.date = Date()
+        self.encoded = ""
+        super.init()
+    }
+    
+    init(for message: Message, withString encoded: String, at date: Date) {
+        self.latitude = 999.0
+        self.longitude = 999.0
+        self.encoded = encoded
+        self.date = date
+        super.init(type: message.type, expires: message.expirationDate, withContent: message.content, for: message.channel)
+    }
+    
+    init(for message: Message, withLatitude latitude: Double, andLongitude longitude: Double, withString encoded: String, at date: Date) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.encoded = encoded
+        self.date = date
+        super.init(type: message.type, expires: message.expirationDate, withContent: message.content, for: message.channel)
+    }
+    
+    init(type: MessageType, expires expirationDate: Date, withContent content: String, for channel: Channel, withLatitude latitude: Double, andLongitude longitude: Double, withString encoded: String, at date: Date) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.encoded = encoded
+        self.date = date
+        super.init(type: type, expires: expirationDate, withContent: content, for: channel)
     }
 }

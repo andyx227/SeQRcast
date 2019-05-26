@@ -1,23 +1,29 @@
 //
-//  SubscribedChannelsTableViewController.swift
+//  MessageLogTableViewController.swift
 //  QRGuard
 //
-//  Created by user149673 on 5/23/19.
+//  Created by user149673 on 5/26/19.
 //  Copyright © 2019 Ground Zero. All rights reserved.
 //
 
 import UIKit
 
-class SubscribedChannelsTableViewController: UITableViewController {
+enum MessageLogType {
+    case my, subscribed
+}
 
-    var channels: [SubscribedChannel] = []
+class MessageLogTableViewController: UITableViewController {
     
+    var channel = Channel()
+    var type: MessageLogType = .my
+    var messageLogs: [MessageLog] = []
+    let dateFormatter = DateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        channels = Storage.subscribedChannels.enumerated().compactMap{ SubscribedChannel(at: $0.offset ) }
-        tableView.reloadData()
-        tableView.isEditing = true
+
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        messageLogs = Database.shared.getLogs(for: channel)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,67 +40,37 @@ class SubscribedChannelsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return channels.count
+        return messageLogs.count
     }
-    
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell") ?? UITableViewCell(style: .default, reuseIdentifier: "channelCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "logCell") ?? UITableViewCell()
         
-        cell.textLabel?.text = channels[indexPath.row].name
+        cell.textLabel?.text = dateFormatter.string(from: messageLogs[indexPath.row].date)
+        cell.detailTextLabel?.text = messageLogs[indexPath.row].type.string
+
         // Configure the cell...
-        
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let actions = UIAlertController(title: channels[indexPath.row].name, message: "Select the action you would like to perform on this channel.", preferredStyle: .actionSheet)
-        let pastMessages = UIAlertAction(title: "View Messages", style: .default) { (action) in
+        
+        switch type {
+        case .my:
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myMessageTableViewController") as! MyMessageTableViewController
+            viewController.messageLog = messageLogs[indexPath.row]
+            self.navigationController?.pushViewController(viewController, animated: true)
+        case .subscribed:
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "subscribedTableViewController") as! SubscribedMessageTableViewController
+            viewController.messageLog = messageLogs[indexPath.row]
             
         }
-        let unsubscribe = UIAlertAction(title: "Unsubscribe", style: .destructive) { (action) in
-            self.unsubscribe(at: indexPath)
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            
-        }
-        actions.addAction(unsubscribe)
-        actions.addAction(cancel)
-        self.present(actions, animated: true)
     }
+    
 
-    func unsubscribe(at indexPath: IndexPath) {
-        let ask = UIAlertController(title: "Unsubscribe", message: "Do you really want to unsubscribe from \(channels[indexPath.row].name)?", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Confirm", style: .default) { (action) in
-            self.channels.remove(at: indexPath.row)
-            Storage.subscribedChannels.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            
-        }
-        ask.addAction(cancel)
-        ask.addAction(confirm)
-        self.present(ask, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        channels.insert(channels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
-        Storage.myChannels.insert(Storage.myChannels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
-    }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
-    
-    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
