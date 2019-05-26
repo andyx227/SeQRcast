@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import AVFoundation
 
+let QR_TYPE_CHANNEL_SHARE = "CAFEDEAD"
+let QR_TYPE_MESSAGE = "CAFEBABE"
+let QR_TYPE_PUBLIC_KEY = "CAFED00D"
+
 class QRCode {
     public static func scanQRCode(view: UIView, delegate: AVCaptureMetadataOutputObjectsDelegate) {
         // Create session (requried to get input from camera)
@@ -57,5 +61,27 @@ class QRCode {
         let scaledQRCode = qrCode.transformed(by: transform)
         
         return scaledQRCode
+    }
+    
+    static func readFromImage(_ image: UIImage) -> String {
+        guard let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]),
+            let ciImage = CIImage(image: image),
+            let features = detector.features(in: ciImage) as? [CIQRCodeFeature] else {
+            return ""
+        }
+        var qrString = ""
+        for feature in features {
+            qrString += feature.messageString ?? ""
+        }
+        
+        return qrString
+    }
+    
+    static func saveToLibrary(_ image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        print(error)
     }
 }

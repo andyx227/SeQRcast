@@ -94,18 +94,25 @@ class MyChannelsTableViewController: UITableViewController {
             textField.placeholder = "Channel Name"
         }
         let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            guard let text = form.textFields?.first?.text else {
+            guard let text = form.textFields?.first?.text, text.count > 0 else {
+                self.showAlert(withTitle: "Channel Cannot Be Created", message: "Please enter a name for your channel.")
                 return
             }
-            if let channel = MyChannel(named: text) {
-                self.channelCreationSuccess(name: text)
-                DispatchQueue.main.async {
-                    self.channels.append(channel)
-                    self.tableView.reloadData()
-                }
+            if text.count > Channel.MAX_NAME_LENGTH {
+                self.showAlert(withTitle: "Channel Cannot Be Created", message: "Channel name cannot exceed 64 letters.")
                 return
             }
-            self.channelCreationFail(name: text)
+            guard let channel = MyChannel(named: text) else {
+                self.showAlert(withTitle: "Channel Cannot Be Created", message: "You already have a channel named \(text).")
+                return
+            }
+            
+            self.showAlert(withTitle: "Channel Created", message: "Successfully created channel \(text).")
+            DispatchQueue.main.async {
+                self.channels.append(channel)
+                self.tableView.insertRows(at: [IndexPath(row: self.channels.count - 1, section: 0)], with: .automatic)
+            }
+            
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
@@ -115,22 +122,13 @@ class MyChannelsTableViewController: UITableViewController {
         self.present(form, animated: true)
     }
     
-    func channelCreationSuccess(name: String) {
-        let success = UIAlertController(title: "Channel Created", message: "Successfully created channel \(name).", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Confirm", style: .default) { (action) in
+    func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Confirm", style: .cancel) { (alertAction) in
             
         }
-        success.addAction(confirm)
-        self.present(success, animated: true)
-    }
-    
-    func channelCreationFail(name: String) {
-        let fail = UIAlertController(title: "Channel Cannot Be Created", message: "You already have a channel with the same name.", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Confirm", style: .default) { (action) in
-            
-        }
-        fail.addAction(confirm)
-        self.present(fail, animated: true)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     
     
