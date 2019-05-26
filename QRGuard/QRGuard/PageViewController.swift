@@ -56,6 +56,7 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         self.navigationItem.title = self.viewControllers?[0].navigationItem.title
+        self.navigationItem.rightBarButtonItem = self.viewControllers?[0].navigationItem.rightBarButtonItem
     }
     
 }

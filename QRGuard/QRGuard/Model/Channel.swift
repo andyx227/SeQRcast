@@ -153,8 +153,12 @@ class MyChannel: Channel {
         Storage.myChannels.append(["name": self.name, "id": self.id, "key": self.key])
     }
     
+    override init() {
+        super.init()
+    }
+    
     func encrypt(with publicKey: String) throws -> CIImage? {
-        let pubKey = try PublicKey(base64Encoded: publicKey)
+        let pubKey = try PublicKey(base64Encoded: String(publicKey.dropFirst(QR_TYPE_PUBLIC_KEY.count)))
         let data = "\(key)\(id)\(name)"
         let message = try ClearMessage(string: data, using: .utf8)
         let encrypted = try message.encrypted(with: pubKey, padding: .PKCS1)

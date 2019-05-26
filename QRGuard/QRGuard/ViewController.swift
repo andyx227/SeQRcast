@@ -12,10 +12,9 @@ import Alamofire
 import SwiftyJSON
 import CryptoSwift
 import CommonCrypto
+import SwiftyRSA
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    @IBOutlet weak var myChannelsBtn: UIButton!
-    @IBOutlet weak var subscribedChannelsBtn: UIButton!
     
     @IBOutlet weak var importImageButton: UIButton!
     
@@ -24,18 +23,16 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         super.viewDidLoad()
         
         QRCode.scanQRCode(view: self.view, delegate: self)
-        view.bringSubviewToFront(myChannelsBtn)
-        view.bringSubviewToFront(subscribedChannelsBtn)
-        swipeDetector()
+        //swipeDetector()
         importImageButton.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         importImageButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         importImageButton.layer.shadowOpacity = 1.0
-        importImageButton.layer.shadowRadius = 1.0
+        importImageButton.layer.shadowRadius = 10.0
         importImageButton.layer.masksToBounds = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         
-        qr.scanQRCode(view: self.view, delegate: self)
+        //QRCode.scanQRCode(view: self.view, delegate: self)
         //swipeDetector()
     }
     
@@ -65,16 +62,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if qrString.count == 0 {
             self.showAlert(withTitle: "QR Code Import Error", message: "The imported image does not contain a QR code.")
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

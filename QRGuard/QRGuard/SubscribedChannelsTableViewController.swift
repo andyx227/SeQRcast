@@ -17,6 +17,7 @@ class SubscribedChannelsTableViewController: UITableViewController {
         
         channels = Storage.subscribedChannels.enumerated().compactMap{ SubscribedChannel(at: $0.offset ) }
         tableView.reloadData()
+        tableView.isEditing = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -73,6 +74,23 @@ class SubscribedChannelsTableViewController: UITableViewController {
         ask.addAction(cancel)
         ask.addAction(confirm)
         self.present(ask, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        channels.insert(channels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
+        Storage.myChannels.insert(Storage.myChannels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     /*
     // Override to support conditional editing of the table view.

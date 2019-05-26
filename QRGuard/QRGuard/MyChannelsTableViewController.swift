@@ -11,13 +11,14 @@ import SwiftyJSON
 
 class MyChannelsTableViewController: UITableViewController {
     
-    var channels: [Channel] = []
+    var channels: [MyChannel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         channels = Storage.myChannels.enumerated().compactMap{ MyChannel(at: $0.offset ) }
         tableView.reloadData()
+        tableView.isEditing = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -50,17 +51,17 @@ class MyChannelsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let actions = UIAlertController(title: channels[indexPath.row].name, message: "Select the action you would like to perform on this channel.", preferredStyle: .actionSheet)
-        let generate = UIAlertAction(title: "Generate Message", style: .default) { (action) in
+        let generate = UIAlertAction(title: "Publish Message", style: .default) { (action) in
             // move to message fill form
         }
-        let share = UIAlertAction(title: "Share", style: .default) { (action) in
+        let share = UIAlertAction(title: "Share Channel", style: .default) { (action) in
             // move to scan public key screen
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let scanPublicKeyVC = storyboard.instantiateViewController(withIdentifier: "scanPublicKeyViewController") as! ScanPublicKeyViewController
-            scanPublicKeyVC.channelData = MyChannel(withID: self.channels[indexPath.row].id)
+            scanPublicKeyVC.channelData = self.channels[indexPath.row]
             self.navigationController?.pushViewController(scanPublicKeyVC, animated: true)
         }
-        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+        let delete = UIAlertAction(title: "Delete Channel", style: .destructive) { (action) in
             self.delete(at: indexPath)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -74,7 +75,7 @@ class MyChannelsTableViewController: UITableViewController {
     }
     
     func delete(at indexPath: IndexPath) {
-        let ask = UIAlertController(title: "Delete", message: "Do you really want to delete \(channels[indexPath.row].name)?", preferredStyle: .alert)
+        let ask = UIAlertController(title: "Delete Channel", message: "Do you really want to delete \(channels[indexPath.row].name)?", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .default) { (action) in
             self.channels.remove(at: indexPath.row)
             Storage.myChannels.remove(at: indexPath.row)
@@ -131,6 +132,22 @@ class MyChannelsTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        channels.insert(channels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
+        Storage.myChannels.insert(Storage.myChannels.remove(at: sourceIndexPath.row), at: destinationIndexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
     
 
     /*

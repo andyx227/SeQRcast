@@ -76,12 +76,4 @@ class QRCode {
         
         return qrString
     }
-    
-    static func saveToLibrary(_ image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print(error)
-    }
 }
