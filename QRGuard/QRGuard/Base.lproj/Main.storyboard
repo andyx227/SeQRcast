@@ -309,6 +309,69 @@
             </objects>
             <point key="canvasLocation" x="2688.8000000000002" y="-658.02098950524737"/>
         </scene>
+        <!--Message QR Code-->
+        <scene sceneID="x1w-sH-NAr">
+            <objects>
+                <viewController storyboardIdentifier="messageQRViewController" id="Elw-H7-LR3" customClass="MessageQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="32q-1G-B9F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code below with a subscriber's device" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-gI-KHv">
+                                <rect key="frame" x="37.5" y="98.5" width="300" height="45"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8uc-vY-zi8">
+                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8uc-vY-zi8" secondAttribute="height" multiplier="1:1" id="xeC-GQ-Z6H"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wI6-oU-pht">
+                                <rect key="frame" x="15" y="610" width="345" height="42"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Export QR Code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="exportImage:" destination="Elw-H7-LR3" eventType="touchUpInside" id="5Sj-EV-FS7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wI6-oU-pht" firstAttribute="leading" secondItem="uIo-Ot-8lv" secondAttribute="leading" constant="15" id="4hg-zm-7Xa"/>
+                            <constraint firstItem="8uc-vY-zi8" firstAttribute="centerY" secondItem="32q-1G-B9F" secondAttribute="centerY" id="Irv-Yx-SWQ"/>
+                            <constraint firstItem="uIo-Ot-8lv" firstAttribute="trailing" secondItem="wI6-oU-pht" secondAttribute="trailing" constant="15" id="S4o-Zh-T3r"/>
+                            <constraint firstItem="8uc-vY-zi8" firstAttribute="centerX" secondItem="32q-1G-B9F" secondAttribute="centerX" id="TW2-We-Ulu"/>
+                            <constraint firstItem="8uc-vY-zi8" firstAttribute="width" secondItem="32q-1G-B9F" secondAttribute="width" multiplier="0.8" id="c0G-wi-hkH"/>
+                            <constraint firstItem="uIo-Ot-8lv" firstAttribute="bottom" secondItem="wI6-oU-pht" secondAttribute="bottom" constant="15" id="fcL-c9-aDm"/>
+                            <constraint firstItem="b9S-gI-KHv" firstAttribute="centerX" secondItem="32q-1G-B9F" secondAttribute="centerX" id="hNt-T6-kWR"/>
+                            <constraint firstItem="b9S-gI-KHv" firstAttribute="width" secondItem="32q-1G-B9F" secondAttribute="width" multiplier="0.8" id="kxG-fM-cvK"/>
+                            <constraint firstItem="8uc-vY-zi8" firstAttribute="top" secondItem="b9S-gI-KHv" secondAttribute="bottom" constant="40" id="vJb-tZ-8Fz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uIo-Ot-8lv"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Message QR Code" id="twc-Ke-Gjh">
+                        <barButtonItem key="rightBarButtonItem" title="Return" id="Um7-Uq-lRo">
+                            <connections>
+                                <action selector="returnToMain:" destination="Elw-H7-LR3" id="u9f-YO-DsW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="exportImageButton" destination="wI6-oU-pht" id="jbb-C4-cgh"/>
+                        <outlet property="imageView" destination="8uc-vY-zi8" id="Miw-pN-qa8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2K-4G-GUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2689" y="-1334"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back_icon" width="50" height="50"/>

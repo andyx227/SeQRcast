@@ -33,6 +33,13 @@ class Message {
     static let SIGNATURE_LENGTH = 344
     static let IV = "SeQRcast:BestApp"
     
+    init() {
+        self.type = .text
+        self.expirationDate = Date()
+        self.content = ""
+        self.channel = Channel()
+    }
+    
     init(type: MessageType, expires expirationDate: Date, withContent content: String, for channel: Channel) {
         self.type = type
         self.expirationDate = expirationDate
