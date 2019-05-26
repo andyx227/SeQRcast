@@ -125,7 +125,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="HRB-U7-kNi" kind="relationship" relationship="rootViewController" id="Yyq-A4-U5l"/>
+                        <segue destination="aM8-f4-J1E" kind="relationship" relationship="rootViewController" id="S3r-go-oOC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiZ-nn-2Ko" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,6 +660,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-J8-nzq">
                                                     <rect key="frame" x="325" y="7" width="34" height="30"/>
                                                     <state key="normal" title="View"/>
+                                                    <connections>
+                                                        <action selector="viewScannedLocation:" destination="aM8-f4-J1E" eventType="touchUpInside" id="T7P-yE-QV7"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -834,8 +837,76 @@
             </objects>
             <point key="canvasLocation" x="3554" y="-2017"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="WDb-65-5ys">
+            <objects>
+                <viewController storyboardIdentifier="mapViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fDV-fd-DcS" customClass="MapViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="zs9-Ua-k9N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZi-yH-phP">
+                                <rect key="frame" x="27" y="173" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NZi-yH-phP" secondAttribute="height" multiplier="1:1" id="QE4-vy-5P3"/>
+                                    <constraint firstAttribute="width" constant="30" id="sgp-ua-jO3"/>
+                                </constraints>
+                                <state key="normal" image="cancel_icon"/>
+                                <connections>
+                                    <action selector="close:" destination="fDV-fd-DcS" eventType="touchUpInside" id="iTe-xM-HNR"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dnX-qM-G7M">
+                                <rect key="frame" x="19" y="165" width="337.5" height="337.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dnX-qM-G7M" secondAttribute="height" multiplier="1:1" id="1u0-rQ-wXq"/>
+                                </constraints>
+                            </mapView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOQ-bV-Zmh">
+                                <rect key="frame" x="19" y="165" width="337.5" height="337.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Not Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrU-kv-wxI">
+                                        <rect key="frame" x="10.5" y="147.5" width="316.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="PrU-kv-wxI" firstAttribute="centerX" secondItem="SOQ-bV-Zmh" secondAttribute="centerX" id="hWg-JN-uIr"/>
+                                    <constraint firstItem="PrU-kv-wxI" firstAttribute="centerY" secondItem="SOQ-bV-Zmh" secondAttribute="centerY" id="vxZ-jI-CRb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dnX-qM-G7M" firstAttribute="width" secondItem="SOQ-bV-Zmh" secondAttribute="width" id="3tk-4a-eca"/>
+                            <constraint firstItem="SOQ-bV-Zmh" firstAttribute="centerX" secondItem="zs9-Ua-k9N" secondAttribute="centerX" id="4Fo-cC-rfl"/>
+                            <constraint firstItem="dnX-qM-G7M" firstAttribute="height" secondItem="SOQ-bV-Zmh" secondAttribute="height" id="Dmg-Kl-b0g"/>
+                            <constraint firstItem="SOQ-bV-Zmh" firstAttribute="centerY" secondItem="zs9-Ua-k9N" secondAttribute="centerY" id="NWj-FQ-ztn"/>
+                            <constraint firstItem="dnX-qM-G7M" firstAttribute="width" secondItem="zs9-Ua-k9N" secondAttribute="width" multiplier="0.9" id="RDw-bS-f3C"/>
+                            <constraint firstItem="dnX-qM-G7M" firstAttribute="centerY" secondItem="zs9-Ua-k9N" secondAttribute="centerY" id="j4K-9d-e5I"/>
+                            <constraint firstItem="dnX-qM-G7M" firstAttribute="centerX" secondItem="zs9-Ua-k9N" secondAttribute="centerX" id="sOO-1y-iNL"/>
+                            <constraint firstItem="NZi-yH-phP" firstAttribute="top" secondItem="dnX-qM-G7M" secondAttribute="top" constant="8" id="xk1-zs-40o"/>
+                            <constraint firstItem="NZi-yH-phP" firstAttribute="leading" secondItem="dnX-qM-G7M" secondAttribute="leading" constant="8" id="z38-Ib-LX1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ygE-DJ-yj4"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="375" height="417"/>
+                    <connections>
+                        <outlet property="closeButton" destination="NZi-yH-phP" id="1wT-yn-hLq"/>
+                        <outlet property="mapView" destination="dnX-qM-G7M" id="3ts-UM-Fkm"/>
+                        <outlet property="notFoundCoverView" destination="SOQ-bV-Zmh" id="xK7-17-mS1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VUu-LI-nyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4349.6000000000004" y="-2017.2413793103449"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back_icon" width="50" height="50"/>
+        <image name="cancel_icon" width="50" height="50"/>
     </resources>
 </document>

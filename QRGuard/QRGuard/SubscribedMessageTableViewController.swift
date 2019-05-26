@@ -60,7 +60,18 @@ class SubscribedMessageTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    
+    
+    @IBAction func viewScannedLocation(_ sender: UIButton) {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
+        viewController.latitude = messageLog.latitude
+        viewController.longitude = messageLog.longitude
+        let nav = UINavigationController(rootViewController: viewController)
+        nav.modalPresentationStyle = .overCurrentContext
+        //viewController.modalPresentationStyle = .overCurrentContext
+        self.present(nav, animated: true)
+    }
+    
     
     @IBAction func exportImage(_ sender: UIButton) {
         if let image = qrImageView.image {
