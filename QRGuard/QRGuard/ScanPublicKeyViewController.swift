@@ -18,13 +18,18 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        importImageButton.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        importImageButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        importImageButton.layer.shadowOpacity = 1.0
-        importImageButton.layer.shadowRadius = 10.0
-        importImageButton.layer.masksToBounds = false
+        setShadowForButton(importImageButton)
+        setShadowForButton(backBtn)
         ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
         QRCode.scanQRCode(view: self.view, delegate: self)
+    }
+    
+    func setShadowForButton(_ button: UIButton) {
+        button.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 10.0
+        button.layer.masksToBounds = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -19,12 +19,16 @@ class ChannelQRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        exportImageButton.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        exportImageButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        exportImageButton.layer.shadowOpacity = 1.0
-        exportImageButton.layer.shadowRadius = 10.0
-        exportImageButton.layer.masksToBounds = false
+        setShadowForButton(exportImageButton)
         displayChannelQRCode()
+    }
+    
+    func setShadowForButton(_ button: UIButton) {
+        button.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 10.0
+        button.layer.masksToBounds = false
     }
     
     func displayChannelQRCode() {
