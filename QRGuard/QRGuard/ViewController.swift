@@ -30,10 +30,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         importImageButton.layer.shadowRadius = 10.0
         importImageButton.layer.masksToBounds = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        
-        //QRCode.scanQRCode(view: self.view, delegate: self)
-        //swipeDetector()
+        view.bringSubviewToFront(importImageButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {

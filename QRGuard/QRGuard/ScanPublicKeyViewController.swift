@@ -13,7 +13,7 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
     static var scanned = false  // Keep track of whether the channel qr code has been scanned
     var channelData = MyChannel()  // Passed from MyChannelsTableVC
     @IBOutlet weak var backBtn: UIButton!
-    
+    @IBOutlet weak var instructionText: UITextView!
     @IBOutlet weak var importImageButton: UIButton!
     
     override func viewDidLoad() {
@@ -24,7 +24,12 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
         importImageButton.layer.shadowRadius = 10.0
         importImageButton.layer.masksToBounds = false
         ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
+        
         QRCode.scanQRCode(view: self.view, delegate: self)
+        
+        view.bringSubviewToFront(instructionText)
+        view.bringSubviewToFront(importImageButton)
+        view.bringSubviewToFront(backBtn)
     }
     
     override func viewWillAppear(_ animated: Bool) {
