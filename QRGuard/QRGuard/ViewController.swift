@@ -17,19 +17,17 @@ import SwiftyRSA
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var importImageButton: UIButton!
+    @IBOutlet weak var cameraView: UIView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        QRCode.scanQRCode(view: self.view, delegate: self)
+        QRCode.scanQRCode(view: cameraView, delegate: self)
         //swipeDetector()
         setShadowForButton(importImageButton)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        
-        //QRCode.scanQRCode(view: self.view, delegate: self)
-        //swipeDetector()
+        view.bringSubviewToFront(importImageButton)
     }
     
     func setShadowForButton(_ button: UIButton) {

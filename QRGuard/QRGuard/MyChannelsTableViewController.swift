@@ -61,6 +61,12 @@ class MyChannelsTableViewController: UITableViewController {
             scanPublicKeyVC.channelData = self.channels[indexPath.row]
             self.navigationController?.pushViewController(scanPublicKeyVC, animated: true)
         }
+        let pastMessages = UIAlertAction(title: "View Messages", style: .default) { (action) in
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageLogTableViewController") as! MessageLogTableViewController
+            viewController.channel = self.channels[indexPath.row]
+            viewController.type = .my
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
         let delete = UIAlertAction(title: "Delete Channel", style: .destructive) { (action) in
             self.delete(at: indexPath)
         }
@@ -69,6 +75,7 @@ class MyChannelsTableViewController: UITableViewController {
         }
         actions.addAction(generate)
         actions.addAction(share)
+        actions.addAction(pastMessages)
         actions.addAction(delete)
         actions.addAction(cancel)
         self.present(actions, animated: true)

@@ -75,38 +75,35 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stq-Se-Obe">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r05-Bn-jyb">
-                                        <rect key="frame" x="15" y="590" width="345" height="42"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <state key="normal" title="Import QR Code">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="importImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bXj-zL-fmR"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="r05-Bn-jyb" secondAttribute="trailing" constant="15" id="7Vb-tB-gDj"/>
-                                    <constraint firstAttribute="bottom" secondItem="r05-Bn-jyb" secondAttribute="bottom" constant="15" id="iaf-Te-HAz"/>
-                                    <constraint firstItem="r05-Bn-jyb" firstAttribute="leading" secondItem="stq-Se-Obe" secondAttribute="leading" constant="15" id="wVE-tU-mDW"/>
-                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r05-Bn-jyb">
+                                <rect key="frame" x="15" y="610" width="345" height="42"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Import QR Code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="importImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bXj-zL-fmR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="stq-Se-Obe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="55W-ns-cFN"/>
                             <constraint firstItem="stq-Se-Obe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Gxh-Tk-wKU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r05-Bn-jyb" secondAttribute="bottom" constant="15" id="dcF-2n-pML"/>
+                            <constraint firstItem="r05-Bn-jyb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="ds7-Oo-IRE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="stq-Se-Obe" secondAttribute="trailing" id="hab-q9-B5q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="stq-Se-Obe" secondAttribute="bottom" id="mEd-BJ-0ZB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r05-Bn-jyb" secondAttribute="trailing" constant="15" id="zwo-s3-MAx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xoe-uP-vCc"/>
                     <connections>
+                        <outlet property="cameraView" destination="stq-Se-Obe" id="Feq-Bp-qTU"/>
                         <outlet property="importImageButton" destination="r05-Bn-jyb" id="diX-E5-ove"/>
                     </connections>
                 </viewController>
@@ -179,6 +176,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxw-Ah-J7S">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDC-93-pl5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -228,8 +229,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="1JZ-Is-uhZ"/>
+                            <constraint firstItem="Nxw-Ah-J7S" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="2hc-f8-Ecs"/>
+                            <constraint firstItem="Nxw-Ah-J7S" firstAttribute="trailing" secondItem="eTe-T0-3Wb" secondAttribute="trailing" id="D5q-ru-MRR"/>
+                            <constraint firstItem="Nxw-Ah-J7S" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="OG5-42-raf"/>
                             <constraint firstItem="kbB-4S-tul" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="V1V-Jt-NSf"/>
                             <constraint firstItem="kbB-4S-tul" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="XSe-7n-oIc"/>
+                            <constraint firstItem="Nxw-Ah-J7S" firstAttribute="bottom" secondItem="eTe-T0-3Wb" secondAttribute="bottom" id="Ze1-Wz-ClD"/>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="etN-fP-cMC"/>
                             <constraint firstItem="eTe-T0-3Wb" firstAttribute="bottom" secondItem="GDC-93-pl5" secondAttribute="bottom" id="fcL-8i-qOF"/>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="trailing" secondItem="eTe-T0-3Wb" secondAttribute="trailing" id="kot-NM-VHw"/>
@@ -239,7 +244,9 @@
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="lSM-r9-B2C" id="1wB-ZZ-0As"/>
+                        <outlet property="cameraView" destination="GDC-93-pl5" id="rcn-et-Eis"/>
                         <outlet property="importImageButton" destination="aHy-AC-Ji0" id="wdA-tU-LW3"/>
+                        <outlet property="instructionText" destination="kbB-4S-tul" id="jEP-bE-A7H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P24-Mx-dP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
