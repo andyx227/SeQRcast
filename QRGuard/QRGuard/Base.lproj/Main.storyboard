@@ -182,38 +182,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDC-93-pl5">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSM-r9-B2C">
-                                        <rect key="frame" x="15" y="520" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="4VB-ES-91O"/>
-                                            <constraint firstAttribute="width" secondItem="lSM-r9-B2C" secondAttribute="height" multiplier="1:1" id="rix-nj-m7T"/>
-                                        </constraints>
-                                        <state key="normal" image="back_icon"/>
-                                        <connections>
-                                            <action selector="back:" destination="Wpw-Wg-4bE" eventType="touchUpInside" id="5NY-AH-QZp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHy-AC-Ji0">
-                                        <rect key="frame" x="15" y="590" width="345" height="42"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <state key="normal" title="Import QR Code">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="importImage:" destination="Wpw-Wg-4bE" eventType="touchUpInside" id="vz7-hv-4ks"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="aHy-AC-Ji0" firstAttribute="leading" secondItem="GDC-93-pl5" secondAttribute="leading" constant="15" id="2fE-cw-f5W"/>
-                                    <constraint firstItem="aHy-AC-Ji0" firstAttribute="leading" secondItem="lSM-r9-B2C" secondAttribute="leading" id="Je7-vt-y79"/>
-                                    <constraint firstItem="aHy-AC-Ji0" firstAttribute="top" secondItem="lSM-r9-B2C" secondAttribute="bottom" constant="20" id="Ymc-eu-EIc"/>
-                                    <constraint firstAttribute="bottom" secondItem="aHy-AC-Ji0" secondAttribute="bottom" constant="15" id="er6-Kx-WeB"/>
-                                    <constraint firstAttribute="trailing" secondItem="aHy-AC-Ji0" secondAttribute="trailing" constant="15" id="mHr-pP-U5v"/>
-                                </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" editable="NO" text="Scan the key of the device you want to share the channel with" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbB-4S-tul">
                                 <rect key="frame" x="0.0" y="20" width="375" height="63"/>
@@ -225,19 +194,46 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSM-r9-B2C">
+                                <rect key="frame" x="15" y="540" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4VB-ES-91O"/>
+                                    <constraint firstAttribute="width" secondItem="lSM-r9-B2C" secondAttribute="height" multiplier="1:1" id="rix-nj-m7T"/>
+                                </constraints>
+                                <state key="normal" image="back_icon"/>
+                                <connections>
+                                    <action selector="back:" destination="Wpw-Wg-4bE" eventType="touchUpInside" id="5NY-AH-QZp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHy-AC-Ji0">
+                                <rect key="frame" x="15" y="610" width="345" height="42"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Import QR Code">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="importImage:" destination="Wpw-Wg-4bE" eventType="touchUpInside" id="vz7-hv-4ks"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="1JZ-Is-uhZ"/>
                             <constraint firstItem="Nxw-Ah-J7S" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="2hc-f8-Ecs"/>
+                            <constraint firstItem="aHy-AC-Ji0" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" constant="15" id="3AQ-34-5dv"/>
                             <constraint firstItem="Nxw-Ah-J7S" firstAttribute="trailing" secondItem="eTe-T0-3Wb" secondAttribute="trailing" id="D5q-ru-MRR"/>
+                            <constraint firstItem="aHy-AC-Ji0" firstAttribute="leading" secondItem="lSM-r9-B2C" secondAttribute="leading" id="H4Y-G5-L10"/>
                             <constraint firstItem="Nxw-Ah-J7S" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="OG5-42-raf"/>
                             <constraint firstItem="kbB-4S-tul" firstAttribute="leading" secondItem="eTe-T0-3Wb" secondAttribute="leading" id="V1V-Jt-NSf"/>
                             <constraint firstItem="kbB-4S-tul" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="XSe-7n-oIc"/>
                             <constraint firstItem="Nxw-Ah-J7S" firstAttribute="bottom" secondItem="eTe-T0-3Wb" secondAttribute="bottom" id="Ze1-Wz-ClD"/>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="top" secondItem="eTe-T0-3Wb" secondAttribute="top" id="etN-fP-cMC"/>
                             <constraint firstItem="eTe-T0-3Wb" firstAttribute="bottom" secondItem="GDC-93-pl5" secondAttribute="bottom" id="fcL-8i-qOF"/>
+                            <constraint firstItem="eTe-T0-3Wb" firstAttribute="trailing" secondItem="aHy-AC-Ji0" secondAttribute="trailing" constant="15" id="gyw-kf-auy"/>
+                            <constraint firstItem="aHy-AC-Ji0" firstAttribute="top" secondItem="lSM-r9-B2C" secondAttribute="bottom" constant="20" id="ilb-cL-RGX"/>
                             <constraint firstItem="GDC-93-pl5" firstAttribute="trailing" secondItem="eTe-T0-3Wb" secondAttribute="trailing" id="kot-NM-VHw"/>
+                            <constraint firstItem="eTe-T0-3Wb" firstAttribute="bottom" secondItem="aHy-AC-Ji0" secondAttribute="bottom" constant="15" id="ouo-MF-Ra9"/>
                             <constraint firstItem="eTe-T0-3Wb" firstAttribute="trailing" secondItem="kbB-4S-tul" secondAttribute="trailing" id="vKn-kg-qAP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eTe-T0-3Wb"/>
