@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    static var scanned = false  // Keep track of whether the channel qr code has been scanned
     var channelData = MyChannel()  // Passed from MyChannelsTableVC
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var instructionText: UITextView!
@@ -23,7 +22,6 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
 
         setShadowForButton(importImageButton)
         setShadowForButton(backBtn)
-        ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
 
         QRCode.scanQRCode(view: cameraView, delegate: self)
         
@@ -42,7 +40,7 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ScanPublicKeyViewController.scanned = false  // Set to false so user can scan public key
+        QRCode.scanned = false  // Set to false so user can scan public key
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -56,8 +54,8 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 if object.type == AVMetadataObject.ObjectType.qr {  // If scanning public key qr code
                     if let publicKey = object.stringValue {
-                        if checkPublicKeyFormat(publicKey) && ScanPublicKeyViewController.scanned == false {
-                            ScanPublicKeyViewController.scanned = true
+                        if checkPublicKeyFormat(publicKey) && QRCode.scanned == false {
+                            QRCode.scanned = true
                             // Encrypt channel data and get the encrypted QR code
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let channelQRVC = storyboard.instantiateViewController(withIdentifier: "channelQRViewController") as! ChannelQRViewController

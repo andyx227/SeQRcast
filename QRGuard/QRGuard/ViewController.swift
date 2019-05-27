@@ -39,6 +39,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        QRCode.scanned = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -96,8 +97,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count > 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                if object.type == AVMetadataObject.ObjectType.qr {  // If reading a QR code
-                    checkURL(object.stringValue!)
+                if object.type == AVMetadataObject.ObjectType.qr && QRCode.scanned == false {  // If reading a QR code
+                    if let string = object.stringValue {
+                        QRCode.scanned = true
+                        
+                        if string.isValidURL {  // Check if qr code is a URL
+                            checkURL(string)
+                        } else if String(string.prefix(QR_TYPE_MESSAGE.count)) == QR_TYPE_CHANNEL_SHARE {  // Check if qr code is for subscribing to channel
+                            registerNewChannel(with: string)
+                        } else {  // qr code must be regular text
+                            showAlert(withTitle: "QR Code Text", message: string)
+                        }
+                    }
                 }
             }
         }
@@ -120,13 +131,17 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         alert.addAction(UIAlertAction(title: goButtonTitle, style: .default, handler: {_ in
             let url = URL(string: url)!
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                    QRCode.scanned = false  // Reset
+                })
             } else {
                 // Fallback on earlier versions
                 UIApplication.shared.openURL(url)
             }
         }))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+            QRCode.scanned = false  // Reset
+        }))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -171,7 +186,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Confirm", style: .cancel) { (alertAction) in
-            
+            QRCode.scanned = false  // Reset
         }
         alert.addAction(action)
         self.present(alert, animated: true)
@@ -209,6 +224,18 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         }
         dismiss(animated: true) {
             self.checkImportedImage(importedImage)
+        }
+    }
+}
+
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            // it is a link, if the match covers the whole string
+            return match.range.length == self.utf16.count
+        } else {
+            return false
         }
     }
 }

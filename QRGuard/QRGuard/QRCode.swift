@@ -15,6 +15,8 @@ let QR_TYPE_MESSAGE = "CAFEBABE"
 let QR_TYPE_PUBLIC_KEY = "CAFED00D"
 
 class QRCode {
+    static var scanned = false  // Keep track of whether a qr code has been scanned
+    
     public static func scanQRCode(view: UIView, delegate: AVCaptureMetadataOutputObjectsDelegate) {
         // Create session (requried to get input from camera)
         let session = AVCaptureSession()
