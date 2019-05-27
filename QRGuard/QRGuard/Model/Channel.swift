@@ -15,6 +15,7 @@ class Channel {
     var id: String
     var key: String
     var publicKey: String
+    var createDate: Date
     
     static let ID_BYTES = 32
     static let KEY_BYTES = 32
@@ -29,6 +30,7 @@ class Channel {
         id = ""
         key = ""
         publicKey = ""
+        createDate = Date()
     }
     
     init(name: String, id: String, key: String, publicKey: String) {
@@ -36,13 +38,17 @@ class Channel {
         self.id = id
         self.key = key
         self.publicKey = publicKey
+        self.createDate = Date()
     }
     
     init(json: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.name = json["name"].stringValue
         self.id = json["id"].stringValue
         self.key = json["key"].stringValue
         self.publicKey = json["publicKey"].stringValue
+        self.createDate = dateFormatter.date(from: json["createDate"].stringValue) ?? Date()
     }
     
     convenience init?(withID id: String) {
@@ -120,6 +126,9 @@ class SubscribedChannel: Channel {
         let id = String(message[keyIndex ..< idIndex])
         let name = String(message[idIndex ..< message.endIndex])
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
         if let _ = SubscribedChannel(withID: id) {
             return (nil, .alreadySubscribed)
         }
@@ -127,7 +136,7 @@ class SubscribedChannel: Channel {
             return (nil, .isMyChannel)
         }
         
-        let json = ["name": name, "id": id, "key": key, "publicKey": publicKey]
+        let json = ["name": name, "id": id, "key": key, "publicKey": publicKey, "createDate": dateFormatter.string(from: Date())]
         Storage.subscribedChannels.append(json)
         return (SubscribedChannel(json: JSON(json)), .none)
     }
@@ -164,7 +173,9 @@ class MyChannel: Channel {
         self.id = getRandom32Bytes()
         self.key = getRandom32Bytes()
         self.publicKey = Storage.publicKey
-        Storage.myChannels.append(["name": self.name, "id": self.id, "key": self.key])
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        Storage.myChannels.append(["name": self.name, "id": self.id, "key": self.key, "createDate": dateFormatter.string(from: Date())])
     }
     
     override init() {

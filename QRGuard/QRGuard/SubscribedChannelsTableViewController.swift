@@ -11,6 +11,7 @@ import UIKit
 class SubscribedChannelsTableViewController: UITableViewController {
 
     var channels: [SubscribedChannel] = []
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +19,17 @@ class SubscribedChannelsTableViewController: UITableViewController {
         channels = Storage.subscribedChannels.enumerated().compactMap{ SubscribedChannel(at: $0.offset ) }
         tableView.reloadData()
         tableView.isEditing = true
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -42,6 +49,7 @@ class SubscribedChannelsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell") ?? UITableViewCell(style: .default, reuseIdentifier: "channelCell")
         
         cell.textLabel?.text = channels[indexPath.row].name
+        cell.detailTextLabel?.text = "Joined on \(dateFormatter.string(from: channels[indexPath.row].createDate))"
         // Configure the cell...
         
         return cell
