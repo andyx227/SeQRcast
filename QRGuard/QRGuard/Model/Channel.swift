@@ -63,6 +63,7 @@ class Channel {
         for (_, json) in mc {
             if json["id"].stringValue == id {
                 self.init(json: json)
+                self.publicKey = Storage.publicKey
                 return
             }
         }

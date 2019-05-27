@@ -13,6 +13,7 @@ import SwiftyJSON
 import CryptoSwift
 import CommonCrypto
 import SwiftyRSA
+import CoreLocation
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -67,12 +68,36 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
         
         switch String(qrString.prefix(QR_TYPE_MESSAGE.count)) {
-        case QR_TYPE_MESSAGE:
-            ()
+        case QR_TYPE_MESSAGE: readMessage(with: qrString)
         case QR_TYPE_CHANNEL_SHARE: registerNewChannel(with: qrString)
         default: ()
         }
     }
+    
+    func readMessage(with data: String) {
+        do {
+            let (message, error) = try! Message.decrypt(data: data)
+            
+            switch (message, error) {
+            case (nil, .invalid):
+                showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
+            case (.some(let message), .expired):
+                ()
+            case (nil, .notSubscribed):
+                showAlert(withTitle: "Message Read Error", message: "You are not subscribed to the channel that published this message.")
+            case (nil, .verificationFailed):
+                showAlert(withTitle: "Message Read Error", message: "The message has been compromised.")
+            case (nil, .others):
+                showAlert(withTitle: "Message Read Error", message: "There was an error reading this message. Please try again.")
+            case (.some(let message), .none):
+                ()
+            default: ()
+            }
+        } catch {
+            showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
+        }
+    }
+    
     
     func registerNewChannel(with data: String) {
         do {
@@ -239,3 +264,23 @@ extension String {
         }
     }
 }
+
+/*
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first, let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withLatitude: location.coordinate.latitude, andLongitude: location.coordinate.longitude, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        guard let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+    }
+}
+ */

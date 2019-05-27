@@ -60,7 +60,9 @@ class MyChannelsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let actions = UIAlertController(title: channels[indexPath.row].name, message: "Select the action you would like to perform on this channel.", preferredStyle: .actionSheet)
         let generate = UIAlertAction(title: "Publish Message", style: .default) { (action) in
-            // move to message fill form
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "publishMessageTableViewController") as! PublishMessageTableViewController
+            viewController.channel = self.channels[indexPath.row]
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
         let share = UIAlertAction(title: "Share Channel", style: .default) { (action) in
             // move to scan public key screen
