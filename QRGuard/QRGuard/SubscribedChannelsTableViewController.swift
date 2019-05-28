@@ -59,10 +59,10 @@ class SubscribedChannelsTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let actions = UIAlertController(title: channels[indexPath.row].name, message: "Select the action you would like to perform on this channel.", preferredStyle: .actionSheet)
         let pastMessages = UIAlertAction(title: "View Messages", style: .default) { (action) in
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageLogTableViewController") as! MessageLogTableViewController
-            viewController.channel = self.channels[indexPath.row]
-            viewController.type = .subscribed
-            self.navigationController?.pushViewController(viewController, animated: true)
+//            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageLogTableViewController") as! MessageLogTableViewController
+//            viewController.channel = self.channels[indexPath.row]
+//            viewController.type = .subscribed
+//            self.navigationController?.pushViewController(viewController, animated: true)
         }
         let unsubscribe = UIAlertAction(title: "Unsubscribe", style: .destructive) { (action) in
             self.unsubscribe(at: indexPath)

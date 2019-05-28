@@ -81,8 +81,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             switch (message, error) {
             case (nil, .invalid):
                 showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
-            case (.some(let message), .expired):
-                ()
+            case (nil, .expired):
+                showAlert(withTitle: "Message Read Error", message: "The message has expired.")
             case (nil, .notSubscribed):
                 showAlert(withTitle: "Message Read Error", message: "You are not subscribed to the channel that published this message.")
             case (nil, .verificationFailed):
@@ -90,7 +90,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             case (nil, .others):
                 showAlert(withTitle: "Message Read Error", message: "There was an error reading this message. Please try again.")
             case (.some(let message), .none):
-                ()
+                showAlert(withTitle: "Decrypted Message", message: message.content)
             default: ()
             }
         } catch {
@@ -130,7 +130,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                             checkURL(string)
                         } else if String(string.prefix(QR_TYPE_MESSAGE.count)) == QR_TYPE_CHANNEL_SHARE {  // Check if qr code is for subscribing to channel
                             registerNewChannel(with: string)
-                        } else {  // qr code must be regular text
+                        } else if String(string.prefix(QR_TYPE_MESSAGE.count)) == QR_TYPE_MESSAGE {  // Check if qr code is a message
+                            readMessage(with: string)
+                        }
+                        else {  // qr code must be regular text
                             showAlert(withTitle: "QR Code Text", message: string)
                         }
                     }

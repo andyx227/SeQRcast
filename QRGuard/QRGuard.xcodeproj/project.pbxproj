@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		961FAE0F19505EEC7A9D8709 /* Pods_QRGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04271617D3F099E04B069998 /* Pods_QRGuard.framework */; };
+		A13C2F66229CEF070071D3A5 /* PublishMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */; };
+		A13C2F69229CEF160071D3A5 /* MessageQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */; };
+		A13C2F6A229CEF160071D3A5 /* MessageLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */; };
+		A13C2F6C229CEF570071D3A5 /* MyMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */; };
+		A13C2F6E229CEF770071D3A5 /* SubscribedMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */; };
+		A13C2F70229CEF8A0071D3A5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */; };
+		A13C2F72229CEFF40071D3A5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F71229CEFF40071D3A5 /* Database.swift */; };
 		A186A3C6229227A400BC9976 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186A3C5229227A400BC9976 /* QRCode.swift */; };
 		A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */; };
 		A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */; };
@@ -35,6 +42,13 @@
 		04271617D3F099E04B069998 /* Pods_QRGuard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRGuard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55385EABC3E0907F0677C75A /* Pods-QRGuard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.debug.xcconfig"; sourceTree = "<group>"; };
 		7A3E347436A9694D546D4580 /* Pods-QRGuard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRGuard.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRGuard/Pods-QRGuard.release.xcconfig"; sourceTree = "<group>"; };
+		A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageQRViewController.swift; sourceTree = "<group>"; };
+		A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLogTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A13C2F71229CEFF40071D3A5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		A186A3C5229227A400BC9976 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
 		A19A30BE228A0D7E00C2E7C0 /* QRGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,12 +117,12 @@
 		A19A30C0228A0D7E00C2E7C0 /* QRGuard */ = {
 			isa = PBXGroup;
 			children = (
-				A3A5864A229CF37100F84828 /* MapViewController.swift */,
-				A3A5864B229CF37100F84828 /* MessageLogTableViewController.swift */,
-				A3A5864D229CF37100F84828 /* MessageQRViewController.swift */,
-				A3A5864C229CF37100F84828 /* MyMessageTableViewController.swift */,
-				A3A58648229CF37100F84828 /* PublishMessageTableViewController.swift */,
-				A3A58649229CF37100F84828 /* SubscribedMessageTableViewController.swift */,
+				A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */,
+				A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */,
+				A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */,
+				A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */,
+				A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */,
+				A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */,
 				A3634A432296A788008167B5 /* MyPlayground.playground */,
 				A39D43E922956837009D760B /* Model */,
 				A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */,
@@ -134,6 +148,7 @@
 				A3A58654229CF37B00F84828 /* Database.swift */,
 				A39D43EA229568A5009D760B /* Channel.swift */,
 				A39D43EC229568BD009D760B /* Message.swift */,
+				A13C2F71229CEFF40071D3A5 /* Database.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,11 +297,16 @@
 				A3A5864F229CF37100F84828 /* SubscribedMessageTableViewController.swift in Sources */,
 				A1E40232229A215A0077F73F /* ChannelQRViewController.swift in Sources */,
 				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
+				A13C2F69229CEF160071D3A5 /* MessageQRViewController.swift in Sources */,
+				A13C2F66229CEF070071D3A5 /* PublishMessageTableViewController.swift in Sources */,
+				A13C2F6E229CEF770071D3A5 /* SubscribedMessageTableViewController.swift in Sources */,
 				A39D43EF22956918009D760B /* Storage.swift in Sources */,
 				A31861A1229A266400FBA414 /* PageViewController.swift in Sources */,
-				A3A58652229CF37100F84828 /* MyMessageTableViewController.swift in Sources */,
-				A3A58651229CF37100F84828 /* MessageLogTableViewController.swift in Sources */,
+				A13C2F6C229CEF570071D3A5 /* MyMessageTableViewController.swift in Sources */,
+				A13C2F70229CEF8A0071D3A5 /* MapViewController.swift in Sources */,
+				A13C2F6A229CEF160071D3A5 /* MessageLogTableViewController.swift in Sources */,
 				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
+				A13C2F72229CEFF40071D3A5 /* Database.swift in Sources */,
 				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,
 				A3A58653229CF37100F84828 /* MessageQRViewController.swift in Sources */,
 				A3A58650229CF37100F84828 /* MapViewController.swift in Sources */,
