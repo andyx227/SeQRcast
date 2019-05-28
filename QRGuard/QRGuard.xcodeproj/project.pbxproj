@@ -29,6 +29,7 @@
 		A39D43EB229568A5009D760B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EA229568A5009D760B /* Channel.swift */; };
 		A39D43ED229568BD009D760B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EC229568BD009D760B /* Message.swift */; };
 		A39D43EF22956918009D760B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EE22956918009D760B /* Storage.swift */; };
+		A3A58659229D292100F84828 /* PublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58658229D292100F84828 /* PublicKeyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		A3A58658229D292100F84828 /* PublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				A1E4022F229A0CF50077F73F /* ScanPublicKeyViewController.swift */,
 				A1E40231229A215A0077F73F /* ChannelQRViewController.swift */,
 				A31861A0229A266400FBA414 /* PageViewController.swift */,
+				A3A58658229D292100F84828 /* PublicKeyViewController.swift */,
 			);
 			path = QRGuard;
 			sourceTree = "<group>";
@@ -226,6 +229,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-QRGuard/Pods-QRGuard-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
 			);
@@ -235,6 +240,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
 			);
@@ -275,6 +282,7 @@
 				A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */,
 				A39D43EB229568A5009D760B /* Channel.swift in Sources */,
 				A39D43ED229568BD009D760B /* Message.swift in Sources */,
+				A3A58659229D292100F84828 /* PublicKeyViewController.swift in Sources */,
 				A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */,
 				A1E40230229A0CF50077F73F /* ScanPublicKeyViewController.swift in Sources */,
 				A1E40232229A215A0077F73F /* ChannelQRViewController.swift in Sources */,

@@ -118,6 +118,72 @@
             </objects>
             <point key="canvasLocation" x="1076" y="85.907046476761622"/>
         </scene>
+        <!--Public Key View Controller-->
+        <scene sceneID="Bhf-f6-YRz">
+            <objects>
+                <viewController storyboardIdentifier="publicKeyViewController" id="32t-PK-RCC" customClass="PublicKeyViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="lSP-He-Ze3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tGA-DM-786">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="587"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tQl-hL-mB0">
+                                        <rect key="frame" x="37.5" y="143.5" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="tQl-hL-mB0" secondAttribute="height" multiplier="1:1" id="gWj-KC-IDc"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdE-ZN-reM">
+                                        <rect key="frame" x="15" y="530" width="345" height="42"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <state key="normal" title="Export QR Code">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exportImage:" destination="32t-PK-RCC" eventType="touchUpInside" id="OsH-DZ-aF5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="RdE-ZN-reM" firstAttribute="leading" secondItem="tGA-DM-786" secondAttribute="leading" constant="15" id="6FP-vu-lcv"/>
+                                    <constraint firstAttribute="bottom" secondItem="RdE-ZN-reM" secondAttribute="bottom" constant="15" id="Mqq-eB-O3e"/>
+                                    <constraint firstItem="tQl-hL-mB0" firstAttribute="width" secondItem="tGA-DM-786" secondAttribute="width" multiplier="0.8" id="bTj-4w-mOI"/>
+                                    <constraint firstAttribute="trailing" secondItem="RdE-ZN-reM" secondAttribute="trailing" constant="15" id="fQs-gg-mAW"/>
+                                    <constraint firstItem="tQl-hL-mB0" firstAttribute="centerX" secondItem="tGA-DM-786" secondAttribute="centerX" id="k81-OK-J8p"/>
+                                    <constraint firstItem="tQl-hL-mB0" firstAttribute="centerY" secondItem="tGA-DM-786" secondAttribute="centerY" id="llB-Ll-pda"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Device Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5h-qm-4lu">
+                                <rect key="frame" x="93.5" y="622" width="188" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="s5h-qm-4lu" firstAttribute="top" secondItem="tGA-DM-786" secondAttribute="bottom" constant="35" id="3iW-1V-Nbs"/>
+                            <constraint firstItem="s5h-qm-4lu" firstAttribute="centerX" secondItem="lSP-He-Ze3" secondAttribute="centerX" id="7nW-Er-mMc"/>
+                            <constraint firstAttribute="bottom" secondItem="s5h-qm-4lu" secondAttribute="bottom" constant="15" id="L66-NQ-QYv"/>
+                            <constraint firstItem="tGA-DM-786" firstAttribute="leading" secondItem="Pif-Yn-pIe" secondAttribute="leading" id="blf-hX-h2j"/>
+                            <constraint firstItem="tGA-DM-786" firstAttribute="top" secondItem="lSP-He-Ze3" secondAttribute="top" id="eF2-e7-wq4"/>
+                            <constraint firstItem="tGA-DM-786" firstAttribute="trailing" secondItem="Pif-Yn-pIe" secondAttribute="trailing" id="nn7-7H-2kW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pif-Yn-pIe"/>
+                    </view>
+                    <connections>
+                        <outlet property="exportImageButton" destination="RdE-ZN-reM" id="YEd-YN-yid"/>
+                        <outlet property="imageView" destination="tQl-hL-mB0" id="Kg2-LB-jgH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtS-nx-cHs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1880.8" y="85.907046476761622"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="WDE-R4-fXj">
             <objects>

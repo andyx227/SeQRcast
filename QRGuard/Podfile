@@ -11,4 +11,5 @@ target 'QRGuard' do
   pod 'SwiftyRSA'
   pod 'CryptoSwift'
   pod 'SQLite.swift', '0.11.6'
+  pod 'Pulley'
 end
