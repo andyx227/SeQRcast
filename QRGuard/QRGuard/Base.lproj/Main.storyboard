@@ -326,127 +326,6 @@
             </objects>
             <point key="canvasLocation" x="2688.8000000000002" y="-658.02098950524737"/>
         </scene>
-        <!--Message Input View Controller-->
-        <scene sceneID="BbM-lq-Zio">
-            <objects>
-                <viewController storyboardIdentifier="messageInputViewController" id="jYO-Lp-WZj" customClass="MessageInputViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JCZ-30-dE9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSU-Xr-4rg">
-                                <rect key="frame" x="16" y="605" width="345" height="42"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="345" id="EPH-KE-tob"/>
-                                    <constraint firstAttribute="height" constant="42" id="zr5-BG-CRk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Generate Encrypted QR Code">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="generateEncryptedQR:" destination="jYO-Lp-WZj" eventType="touchUpInside" id="3Br-Yx-3SK"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select message type" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPR-nA-AZj">
-                                <rect key="frame" x="43" y="214" width="293" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="gN5-ak-bT1"/>
-                                    <constraint firstAttribute="width" constant="293" id="xdu-l2-Ka8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter message expiration date" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0N-A9-Hnt">
-                                <rect key="frame" x="42" y="353" width="293" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="293" id="66o-ZX-My1"/>
-                                    <constraint firstAttribute="height" constant="33" id="Q3v-du-Nah"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="afn-Fb-wXz"/>
-                                    <constraint firstAttribute="width" constant="293" id="nki-mK-t63"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9U1-Vh-8Dh">
-                                <rect key="frame" x="28" y="255" width="320" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="EAa-v5-pO0"/>
-                                    <constraint firstAttribute="height" constant="80" id="Kk8-Br-yKU"/>
-                                </constraints>
-                            </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NTu-Ta-LDJ">
-                                <rect key="frame" x="42" y="135" width="293" height="71"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="71" id="Ds4-z7-udG"/>
-                                    <constraint firstAttribute="width" constant="293" id="ezQ-f2-SdG"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the message you would like to encrpyt" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffU-qm-u0l">
-                                <rect key="frame" x="41" y="52" width="293" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="293" id="AaQ-bg-s2Z"/>
-                                    <constraint firstAttribute="height" constant="45" id="cRY-Ok-g3W"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="o9A-dl-Hty">
-                                <rect key="frame" x="0.0" y="394" width="375" height="181"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="8Kp-S0-8MP"/>
-                                    <constraint firstAttribute="height" constant="181" id="ugC-4P-gnW"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="580707101.85604298">
-                                    <!--2019-05-28 03:31:41 +0000-->
-                                </date>
-                            </datePicker>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="o9A-dl-Hty" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" id="2Wm-oR-aBF"/>
-                            <constraint firstItem="NTu-Ta-LDJ" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="42" id="4y7-E7-Bb6"/>
-                            <constraint firstItem="ffU-qm-u0l" firstAttribute="top" secondItem="Kh0-1M-osC" secondAttribute="top" constant="32" id="C25-PW-Sc3"/>
-                            <constraint firstItem="9U1-Vh-8Dh" firstAttribute="top" secondItem="QPR-nA-AZj" secondAttribute="bottom" constant="8" id="Cgy-85-TVS"/>
-                            <constraint firstItem="o9A-dl-Hty" firstAttribute="top" secondItem="H0N-A9-Hnt" secondAttribute="bottom" constant="8" id="Fxn-7Y-fud"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="bottom" secondItem="oSU-Xr-4rg" secondAttribute="bottom" constant="20" id="Hyr-Mi-NUJ"/>
-                            <constraint firstItem="QPR-nA-AZj" firstAttribute="top" secondItem="NTu-Ta-LDJ" secondAttribute="bottom" constant="8" id="SJY-fv-Z0g"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="QPR-nA-AZj" secondAttribute="trailing" constant="39" id="T7W-Ud-C7o"/>
-                            <constraint firstItem="oSU-Xr-4rg" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="16" id="V71-U2-Hrq"/>
-                            <constraint firstItem="QPR-nA-AZj" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="43" id="XUn-cg-o6S"/>
-                            <constraint firstItem="NTu-Ta-LDJ" firstAttribute="top" secondItem="ffU-qm-u0l" secondAttribute="bottom" constant="38" id="aub-aX-pip"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="ffU-qm-u0l" secondAttribute="trailing" constant="41" id="cGX-Hb-Ys8"/>
-                            <constraint firstItem="9U1-Vh-8Dh" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="28" id="eJU-Ek-eEF"/>
-                            <constraint firstItem="oSU-Xr-4rg" firstAttribute="top" secondItem="o9A-dl-Hty" secondAttribute="bottom" constant="30" id="gPV-wc-Do6"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="NTu-Ta-LDJ" secondAttribute="trailing" constant="40" id="iFi-45-UY6"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="9U1-Vh-8Dh" secondAttribute="trailing" constant="27" id="liT-Y3-zvJ"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="oSU-Xr-4rg" secondAttribute="trailing" constant="14" id="lpz-TS-cbr"/>
-                            <constraint firstItem="o9A-dl-Hty" firstAttribute="trailing" secondItem="Kh0-1M-osC" secondAttribute="trailing" id="pAQ-5H-gRx"/>
-                            <constraint firstItem="ffU-qm-u0l" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="41" id="r79-Fj-Qan"/>
-                            <constraint firstItem="H0N-A9-Hnt" firstAttribute="leading" secondItem="Kh0-1M-osC" secondAttribute="leading" constant="42" id="ss5-Hv-vho"/>
-                            <constraint firstItem="Kh0-1M-osC" firstAttribute="trailing" secondItem="H0N-A9-Hnt" secondAttribute="trailing" constant="40" id="xd6-dE-o1j"/>
-                            <constraint firstItem="H0N-A9-Hnt" firstAttribute="top" secondItem="9U1-Vh-8Dh" secondAttribute="bottom" constant="18" id="z2s-Mm-MXJ"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Kh0-1M-osC"/>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="o9A-dl-Hty" id="iCh-FD-npN"/>
-                        <outlet property="messageInput" destination="NTu-Ta-LDJ" id="WSc-Vm-eVc"/>
-                        <outlet property="messageTypePicker" destination="9U1-Vh-8Dh" id="Egi-sP-eHM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Vg-TX-7ZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1880.8" y="-1334.4827586206898"/>
-        </scene>
         <!--Publish Message-->
         <scene sceneID="KcR-Ao-1LV">
             <objects>
@@ -455,6 +334,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="R1m-4A-QCZ">
                                 <cells>
@@ -490,7 +370,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z6h-in-hy4">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -531,7 +411,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jEU-lg-bkc">
-                                                    <rect key="frame" x="16" y="12" width="61.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="12" width="61.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -598,12 +478,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZXV-J4-ahG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492" y="-1334"/>
+            <point key="canvasLocation" x="1881" y="-1334"/>
         </scene>
         <!--Message QR Code-->
         <scene sceneID="x1w-sH-NAr">
             <objects>
-                <viewController storyboardIdentifier="messageQRViewController" id="Elw-H7-LR3" customClass="MessageQRViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageQRViewController" id="Elw-H7-LR3" customClass="MessageQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="32q-1G-B9F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
