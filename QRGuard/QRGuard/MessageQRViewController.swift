@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MessageQRViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
@@ -16,6 +17,7 @@ class MessageQRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         exportImageButton.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         exportImageButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         exportImageButton.layer.shadowOpacity = 1.0
@@ -25,11 +27,13 @@ class MessageQRViewController: UIViewController {
     }
     
     func displayChannelQRCode() {
-        guard let qr = try? message.encrypt(), let image = CIContext().createCGImage(qr, from: qr.extent) else {
+        guard let qr = try? message.encrypt(), let encoded = try? message.encryptedString(), let image = CIContext().createCGImage(qr, from: qr.extent) else {
             showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR code. Please try again.")
             return
         }
         
+        let log = MessageLog(for: message, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
         imageView.image = UIImage(cgImage: image)
     }
     
@@ -65,4 +69,25 @@ class MessageQRViewController: UIViewController {
     
 }
 
-
+/*
+ let locationManager = CLLocationManager()
+ locationManager.delegate = self
+ locationManager.requestLocation()
+extension MessageQRViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first, let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withLatitude: location.coordinate.latitude, andLongitude: location.coordinate.longitude, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        guard let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+    }
+}
+*/

@@ -39,6 +39,7 @@ class Message {
     
     static let TYPE_LENGTH = 1
     static let DATE_FORMAT = "yyyy-MM-dd HH:mm"
+    static let MAX_CONTENT_LENGTH = 500
     static let SIGNATURE_LENGTH = 344
     static let IV = "SeQRcast:BestApp"
     
@@ -110,16 +111,20 @@ class Message {
             return (nil, .others)
         }
         
+        let message = Message(type: type, expires: date, withContent: content, for: channel)
+        
         if date.timeIntervalSince(Date()) < 0.0 {
             return (nil, .expired)
         }
-        
-        let message = Message(type: type, expires: date, withContent: content, for: channel)
         
         return (message, .none)
     }
     
     func encrypt() throws -> CIImage? {
+        return QRCode.generateQRCode(message: try encryptedString())
+    }
+    
+    func encryptedString() throws -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Message.DATE_FORMAT
         let date = dateFormatter.string(from: expirationDate)
@@ -130,13 +135,13 @@ class Message {
         let document = try ClearMessage(string: doc, using: .utf8)
         let signature = try document.signed(with: privateKey, digestType: .sha256)
         
-        let aes = try AES(key: channel.key, iv: Message.IV)
+        let aes = try AES(key: Data(base64Encoded: channel.key)!.bytes, blockMode: CBC(iv: Message.IV.bytes))
         guard let encrypted = try aes.encrypt(Array(body.utf8)).toBase64() else {
             print("encryption failed")
-            return QRCode.generateQRCode(message: "")
+            return ""
         }
         
-        return QRCode.generateQRCode(message: QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted)
+        return QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted
     }
 }
 
