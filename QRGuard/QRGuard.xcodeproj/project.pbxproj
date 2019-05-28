@@ -22,6 +22,13 @@
 		A39D43EB229568A5009D760B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EA229568A5009D760B /* Channel.swift */; };
 		A39D43ED229568BD009D760B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EC229568BD009D760B /* Message.swift */; };
 		A39D43EF22956918009D760B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EE22956918009D760B /* Storage.swift */; };
+		A3A5864E229CF37100F84828 /* PublishMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58648229CF37100F84828 /* PublishMessageTableViewController.swift */; };
+		A3A5864F229CF37100F84828 /* SubscribedMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58649229CF37100F84828 /* SubscribedMessageTableViewController.swift */; };
+		A3A58650229CF37100F84828 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5864A229CF37100F84828 /* MapViewController.swift */; };
+		A3A58651229CF37100F84828 /* MessageLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5864B229CF37100F84828 /* MessageLogTableViewController.swift */; };
+		A3A58652229CF37100F84828 /* MyMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5864C229CF37100F84828 /* MyMessageTableViewController.swift */; };
+		A3A58653229CF37100F84828 /* MessageQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A5864D229CF37100F84828 /* MessageQRViewController.swift */; };
+		A3A58655229CF37B00F84828 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A58654229CF37B00F84828 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +52,13 @@
 		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		A3A58648229CF37100F84828 /* PublishMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishMessageTableViewController.swift; sourceTree = "<group>"; };
+		A3A58649229CF37100F84828 /* SubscribedMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedMessageTableViewController.swift; sourceTree = "<group>"; };
+		A3A5864A229CF37100F84828 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A3A5864B229CF37100F84828 /* MessageLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLogTableViewController.swift; sourceTree = "<group>"; };
+		A3A5864C229CF37100F84828 /* MyMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewController.swift; sourceTree = "<group>"; };
+		A3A5864D229CF37100F84828 /* MessageQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageQRViewController.swift; sourceTree = "<group>"; };
+		A3A58654229CF37B00F84828 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +103,12 @@
 		A19A30C0228A0D7E00C2E7C0 /* QRGuard */ = {
 			isa = PBXGroup;
 			children = (
+				A3A5864A229CF37100F84828 /* MapViewController.swift */,
+				A3A5864B229CF37100F84828 /* MessageLogTableViewController.swift */,
+				A3A5864D229CF37100F84828 /* MessageQRViewController.swift */,
+				A3A5864C229CF37100F84828 /* MyMessageTableViewController.swift */,
+				A3A58648229CF37100F84828 /* PublishMessageTableViewController.swift */,
+				A3A58649229CF37100F84828 /* SubscribedMessageTableViewController.swift */,
 				A3634A432296A788008167B5 /* MyPlayground.playground */,
 				A39D43E922956837009D760B /* Model */,
 				A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */,
@@ -111,6 +131,7 @@
 		A39D43E922956837009D760B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3A58654229CF37B00F84828 /* Database.swift */,
 				A39D43EA229568A5009D760B /* Channel.swift */,
 				A39D43EC229568BD009D760B /* Message.swift */,
 			);
@@ -256,12 +277,19 @@
 				A39D43ED229568BD009D760B /* Message.swift in Sources */,
 				A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */,
 				A1E40230229A0CF50077F73F /* ScanPublicKeyViewController.swift in Sources */,
+				A3A5864E229CF37100F84828 /* PublishMessageTableViewController.swift in Sources */,
+				A3A58655229CF37B00F84828 /* Database.swift in Sources */,
+				A3A5864F229CF37100F84828 /* SubscribedMessageTableViewController.swift in Sources */,
 				A1E40232229A215A0077F73F /* ChannelQRViewController.swift in Sources */,
 				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
 				A39D43EF22956918009D760B /* Storage.swift in Sources */,
 				A31861A1229A266400FBA414 /* PageViewController.swift in Sources */,
+				A3A58652229CF37100F84828 /* MyMessageTableViewController.swift in Sources */,
+				A3A58651229CF37100F84828 /* MessageLogTableViewController.swift in Sources */,
 				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
 				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,
+				A3A58653229CF37100F84828 /* MessageQRViewController.swift in Sources */,
+				A3A58650229CF37100F84828 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
