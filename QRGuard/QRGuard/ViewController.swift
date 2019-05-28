@@ -76,7 +76,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     func readMessage(with data: String) {
         do {
-            let (message, error) = try! Message.decrypt(data: data)
+            let (message, error) = try Message.decrypt(data: data)
             
             switch (message, error) {
             case (nil, .invalid):

@@ -72,6 +72,37 @@ class SubscribedMessageTableViewController: UITableViewController {
         self.present(nav, animated: true)
     }
     
+    @IBAction func goToURL(_ sender: UIButton) {
+        guard let url = URL(string: messageLog.content) else {
+            showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
+            return
+        }
+        messageLog.hasSafeURL { (isSafe) in
+            if isSafe {
+                UIApplication.shared.open(url, options: [:]) { (success) in
+                    if !success {
+                        self.showAlert(withTitle: "URL Error", message: "The URL could not be opened.")
+                    }
+                }
+            }
+            else {
+                let alert = UIAlertController(title: "Suspicious URL", message: "This URL may be contain malicious content. Would you like to proceed?", preferredStyle: .alert)
+                let proceed = UIAlertAction(title: "Proceed", style: .default, handler: { (action) in
+                    UIApplication.shared.open(url, options: [:]) { (success) in
+                        if !success {
+                            self.showAlert(withTitle: "URL Error", message: "The URL could not be opened.")
+                        }
+                    }
+                })
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                    
+                })
+                alert.addAction(cancel)
+                alert.addAction(proceed)
+                self.present(alert, animated: true)
+            }
+        }
+    }
     
     @IBAction func exportImage(_ sender: UIButton) {
         if let image = qrImageView.image {

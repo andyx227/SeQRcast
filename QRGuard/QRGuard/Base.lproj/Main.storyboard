@@ -680,6 +680,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qc-hX-uPq">
                                                     <rect key="frame" x="329" y="7" width="30" height="30"/>
                                                     <state key="normal" title="Go"/>
+                                                    <connections>
+                                                        <action selector="goToURL:" destination="HRB-U7-kNi" eventType="touchUpInside" id="mVi-yD-dMa"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -907,6 +910,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QH0-uB-ArW">
                                                     <rect key="frame" x="329" y="7" width="30" height="30"/>
                                                     <state key="normal" title="Go"/>
+                                                    <connections>
+                                                        <action selector="goToURL:" destination="aM8-f4-J1E" eventType="touchUpInside" id="Rkb-QZ-LBo"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

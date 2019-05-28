@@ -10,6 +10,7 @@ import Foundation
 import SwiftyRSA
 import SwiftyJSON
 import CryptoSwift
+import Alamofire
 
 enum MessageType: Int {
     case text = 0
@@ -142,6 +143,39 @@ class Message {
         }
         
         return QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted
+    }
+    
+    func hasSafeURL(_ completion: @escaping (Bool) -> ()) {
+        // Build the http request body
+        let parameters: [String: Any] = [
+            "client" : [
+                "clientId": "groundzero",
+                "clientVersion": "alpha"
+            ],
+            "threatInfo" : [
+                "threatTypes": ["MALWARE", "SOCIAL_ENGINEERING", "POTENTIALLY_HARMFUL_APPLICATION"],
+                "platformTypes": ["ANY_PLATFORM"],
+                "threatEntryTypes": ["URL"],
+                "threatEntries": [
+                    ["url": content]
+                ]
+            ]
+        ]
+        
+        // Make http request to Google Safe Browsing
+        Alamofire.request(URL(string: "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyAlC7WKrIUY2S0i7RUaGDzHEfYl77_-Wp0")!,
+                          method: .post,
+                          parameters: parameters,
+                          encoding: JSONEncoding.default,
+                          headers: nil)
+            .responseJSON { (response) in
+                if let jsonresponse = response.result.value {
+                    let json = JSON(jsonresponse)
+                    let matches = json["matches"].arrayValue
+                    
+                    completion(matches.count == 0)
+                }
+        }
     }
 }
 
