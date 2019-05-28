@@ -61,6 +61,9 @@ class MyChannelsTableViewController: UITableViewController {
         let actions = UIAlertController(title: channels[indexPath.row].name, message: "Select the action you would like to perform on this channel.", preferredStyle: .actionSheet)
         let generate = UIAlertAction(title: "Publish Message", style: .default) { (action) in
             // move to message fill form
+            let messageInputVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageInputViewController") as! MessageInputViewController
+            messageInputVC.channel = self.channels[indexPath.row]
+            self.navigationController?.pushViewController(messageInputVC, animated: true)
         }
         let share = UIAlertAction(title: "Share Channel", style: .default) { (action) in
             // move to scan public key screen
@@ -70,10 +73,10 @@ class MyChannelsTableViewController: UITableViewController {
             self.navigationController?.pushViewController(scanPublicKeyVC, animated: true)
         }
         let pastMessages = UIAlertAction(title: "View Messages", style: .default) { (action) in
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageLogTableViewController") as! MessageLogTableViewController
-            viewController.channel = self.channels[indexPath.row]
-            viewController.type = .my
-            self.navigationController?.pushViewController(viewController, animated: true)
+//            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageLogTableViewController") as! MessageLogTableViewController
+//            viewController.channel = self.channels[indexPath.row]
+//            viewController.type = .my
+//            self.navigationController?.pushViewController(viewController, animated: true)
         }
         let delete = UIAlertAction(title: "Delete Channel", style: .destructive) { (action) in
             self.delete(at: indexPath)
