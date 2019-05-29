@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Pulley
 
 class PageViewController: UIPageViewController {
 
-    var pages = [
+    lazy var pages = [
         UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "subscribedChannelsTableViewController"),
-        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainViewController"),
+        self.getMainViewController(),
         UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myChannelsTableViewController")
     ]
     
@@ -24,6 +25,14 @@ class PageViewController: UIPageViewController {
         
         setViewControllers([pages[1]], direction: .forward, animated: true)
         // Do any additional setup after loading the view.
+    }
+    
+    func getMainViewController() -> UIViewController {
+        let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainViewController") as! ViewController
+        let drawer = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "publicKeyDisplayViewController") as! PublicKeyDisplayViewController
+        let pulley = PulleyViewController(contentViewController: main, drawerViewController: drawer)
+        pulley.backgroundDimmingOpacity = 0.0
+        return pulley
     }
     
 

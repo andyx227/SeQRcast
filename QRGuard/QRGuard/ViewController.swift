@@ -42,6 +42,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewWillAppear(_ animated: Bool) {
         QRCode.scanned = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.view.transform = CGAffineTransform(rotationAngle: .pi)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
