@@ -27,6 +27,7 @@
 		A31861A1229A266400FBA414 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31861A0229A266400FBA414 /* PageViewController.swift */; };
 		A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */; };
 		A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */; };
+		A393AA7C229E1C7300FCC06B /* MessageDisplayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */; };
 		A39D43EB229568A5009D760B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EA229568A5009D760B /* Channel.swift */; };
 		A39D43ED229568BD009D760B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EC229568BD009D760B /* Message.swift */; };
 		A39D43EF22956918009D760B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EE22956918009D760B /* Storage.swift */; };
@@ -58,6 +59,7 @@
 		A3634A432296A788008167B5 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = QRGuard/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewController.swift; sourceTree = "<group>"; };
 		A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedChannelsTableViewController.swift; sourceTree = "<group>"; };
+		A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayTableViewController.swift; sourceTree = "<group>"; };
 		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				A1E4022F229A0CF50077F73F /* ScanPublicKeyViewController.swift */,
 				A1E40231229A215A0077F73F /* ChannelQRViewController.swift */,
 				A31861A0229A266400FBA414 /* PageViewController.swift */,
+				A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */,
 			);
 			path = QRGuard;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				A13C2F6C229CEF570071D3A5 /* MyMessageTableViewController.swift in Sources */,
 				A13C2F70229CEF8A0071D3A5 /* MapViewController.swift in Sources */,
 				A13C2F6A229CEF160071D3A5 /* MessageLogTableViewController.swift in Sources */,
+				A393AA7C229E1C7300FCC06B /* MessageDisplayTableViewController.swift in Sources */,
 				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
 				A13C2F72229CEFF40071D3A5 /* Database.swift in Sources */,
 				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,

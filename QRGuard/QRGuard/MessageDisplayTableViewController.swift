@@ -1,49 +1,44 @@
 //
-//  MyMessageTableViewController.swift
+//  MessageDisplayTableViewController.swift
 //  QRGuard
 //
-//  Created by user149673 on 5/26/19.
+//  Created by user149673 on 5/28/19.
 //  Copyright © 2019 Ground Zero. All rights reserved.
 //
 
 import UIKit
+import CoreLocation
 
-class MyMessageTableViewController: UITableViewController {
-
-    @IBOutlet weak var generatedDateLabel: UILabel!
+class MessageDisplayTableViewController: UITableViewController {
+    
+    @IBOutlet weak var channelNameLabel: UILabel!
     @IBOutlet weak var messageTypeLabel: UILabel!
     @IBOutlet weak var expirationDateLabel: UILabel!
     @IBOutlet weak var contentButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var qrImageView: UIImageView!
-    @IBOutlet weak var exportImageButton: UIButton!
     
-    var messageLog = MessageLog()
+    var message = Message()
+    var spinner = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        if message.channel.publicKey != Storage.publicKey {
+            self.navigationItem.backBarButtonItem?.isEnabled = false
+            showSpinner()
+            CLLocationManager().requestLocation()
+        }
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500.0
-        setShadowForButton(exportImageButton)
-        contentButton.isHidden = messageLog.type != .url
+        channelNameLabel.text = message.channel.name
+        contentButton.isHidden = message.type != .url
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
-        generatedDateLabel.text = dateFormatter.string(from: messageLog.date)
-        messageTypeLabel.text = messageLog.type.string
-        expirationDateLabel.text = dateFormatter.string(from: messageLog.expirationDate)
-        contentLabel.text = messageLog.content
-        
-        guard let qr = QRCode.generateQRCode(message: messageLog.encoded),
-            let image = CIContext().createCGImage(qr, from: qr.extent) else {
-            showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR code. Please try again.")
-            return
-        }
-        
-        qrImageView.image = UIImage(cgImage: image)
-        
+        messageTypeLabel.text = message.type.string
+        expirationDateLabel.text = dateFormatter.string(from: message.expirationDate)
+        contentLabel.text = message.content
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,22 +46,14 @@ class MyMessageTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func setShadowForButton(_ button: UIButton) {
-        button.layer.shadowColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowOpacity = 1.0
-        button.layer.shadowRadius = 10.0
-        button.layer.masksToBounds = false
-    }
-    
-    
     @IBAction func goToURL(_ sender: UIButton) {
-        let urlString = messageLog.content.starts(with: "https://") || messageLog.content.starts(with: "http://") ? messageLog.content : "https://" + messageLog.content
+        let urlString = message.content.starts(with: "https://") || message.content.starts(with: "http://") ? message.content : "https://" + message.content
         guard let url = URL(string: urlString) else {
-            showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
-            return
+        showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
+        return
         }
-        messageLog.hasSafeURL { (isSafe) in
+        
+        message.hasSafeURL { (isSafe) in
             if isSafe {
                 UIApplication.shared.open(url, options: [:]) { (success) in
                     if !success {
@@ -93,22 +80,6 @@ class MyMessageTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func exportImage(_ sender: UIButton) {
-        if let image = qrImageView.image {
-            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        }
-        else {
-            showAlert(withTitle: "QR Code Export Error", message: "There is no QR code to be exported.")
-        }
-    }
-    
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let _ = error {
-            showAlert(withTitle: "QR Code Export Error", message: "There was an error exporting QR code. Please try again.")
-        }
-        showAlert(withTitle: "QR Code Exported", message: "The QR code was successfully exported.")
-    }
-    
     func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Confirm", style: .cancel) { (alertAction) in
@@ -116,6 +87,24 @@ class MyMessageTableViewController: UITableViewController {
         }
         alert.addAction(action)
         self.present(alert, animated: true)
+    }
+    
+    func showSpinner() {
+        DispatchQueue.main.async {
+            self.spinner = UIView.init(frame: self.view.bounds)
+            self.spinner.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue:0.5, alpha: 0.5)
+            let activity = UIActivityIndicatorView.init(style: .whiteLarge)
+            activity.startAnimating()
+            activity.center = self.spinner.center
+            self.spinner.addSubview(activity)
+            self.view.addSubview(self.spinner)
+        }
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.spinner.removeFromSuperview()
+        }
     }
     
 
@@ -188,4 +177,26 @@ class MyMessageTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension MessageDisplayTableViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first, let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withLatitude: location.coordinate.latitude, andLongitude: location.coordinate.longitude, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+        self.navigationItem.backBarButtonItem?.isEnabled = true
+        removeSpinner()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        guard let encoded = try? message.encryptedString() else {
+            return
+        }
+        let log = MessageLog(for: message, withString: encoded, at: Date())
+        Database.shared.storeLog(log)
+        self.navigationItem.backBarButtonItem?.isEnabled = true
+        removeSpinner()
+    }
 }

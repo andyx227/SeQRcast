@@ -73,7 +73,8 @@ class SubscribedMessageTableViewController: UITableViewController {
     }
     
     @IBAction func goToURL(_ sender: UIButton) {
-        guard let url = URL(string: messageLog.content) else {
+        let urlString = messageLog.content.starts(with: "https://") || messageLog.content.starts(with: "http://") ? messageLog.content : "https://" + messageLog.content
+        guard let url = URL(string: urlString) else {
             showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
             return
         }

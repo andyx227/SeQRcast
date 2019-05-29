@@ -82,8 +82,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             switch (message, error) {
             case (nil, .invalid):
                 showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
-            case (nil, .expired):
-                showAlert(withTitle: "Message Read Error", message: "The message has expired.")
+            case (.some(let message), .expired):
+                viewMessage(message, withWarning: "This message has already expired. Do you still want to view this message?")
             case (nil, .notSubscribed):
                 showAlert(withTitle: "Message Read Error", message: "You are not subscribed to the channel that published this message.")
             case (nil, .verificationFailed):
@@ -91,12 +91,29 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             case (nil, .others):
                 showAlert(withTitle: "Message Read Error", message: "There was an error reading this message. Please try again.")
             case (.some(let message), .none):
-                showAlert(withTitle: "Decrypted Message", message: message.content)
+                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageDisplayTableViewController") as! MessageDisplayTableViewController
+                viewController.message = message
+                self.navigationController?.pushViewController(viewController, animated: true)
             default: ()
             }
         } catch {
             showAlert(withTitle: "QR Code Read Error", message: "The scanned QR Code is not a valid SeQRcast code.")
         }
+    }
+    
+    func viewMessage(_ message: Message, withWarning warning: String) {
+        let alert = UIAlertController(title: "View Message", message: warning, preferredStyle: .alert)
+        let view = UIAlertAction(title: "View", style: .default) { (action) in
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageDisplayTableViewController") as! MessageDisplayTableViewController
+            viewController.message = message
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        alert.addAction(cancel)
+        alert.addAction(view)
+        self.present(alert, animated: true)
     }
     
     
@@ -269,22 +286,4 @@ extension String {
     }
 }
 
-/*
-extension ViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first, let encoded = try? message.encryptedString() else {
-            return
-        }
-        let log = MessageLog(for: message, withLatitude: location.coordinate.latitude, andLongitude: location.coordinate.longitude, withString: encoded, at: Date())
-        Database.shared.storeLog(log)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        guard let encoded = try? message.encryptedString() else {
-            return
-        }
-        let log = MessageLog(for: message, withString: encoded, at: Date())
-        Database.shared.storeLog(log)
-    }
-}
- */
+

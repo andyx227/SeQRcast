@@ -115,7 +115,7 @@ class Message {
         let message = Message(type: type, expires: date, withContent: content, for: channel)
         
         if date.timeIntervalSince(Date()) < 0.0 {
-            return (nil, .expired)
+            return (message, .expired)
         }
         
         return (message, .none)
