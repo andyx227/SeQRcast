@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A13C2F66229CEF070071D3A5 /* PublishMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */; };
+		A13C2F69229CEF160071D3A5 /* MessageQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */; };
+		A13C2F6A229CEF160071D3A5 /* MessageLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */; };
+		A13C2F6C229CEF570071D3A5 /* MyMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */; };
+		A13C2F6E229CEF770071D3A5 /* SubscribedMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */; };
+		A13C2F70229CEF8A0071D3A5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */; };
+		A13C2F72229CEFF40071D3A5 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C2F71229CEFF40071D3A5 /* Database.swift */; };
+		A186A3C6229227A400BC9976 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A186A3C5229227A400BC9976 /* QRCode.swift */; };
+		A199E1FF229DEB27007CC18A /* PublicKeyDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A199E1FE229DEB27007CC18A /* PublicKeyDisplayViewController.swift */; };
+		A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */; };
+		A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */; };
+		A19A30C7228A0D7E00C2E7C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19A30C5228A0D7E00C2E7C0 /* Main.storyboard */; };
+		A19A30CC228A0D8000C2E7C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */; };
+		A19A30D6228A27F900C2E7C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A19A30D5228A27F900C2E7C0 /* Assets.xcassets */; };
+		A1E40230229A0CF50077F73F /* ScanPublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4022F229A0CF50077F73F /* ScanPublicKeyViewController.swift */; };
+		A1E40232229A215A0077F73F /* ChannelQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E40231229A215A0077F73F /* ChannelQRViewController.swift */; };
+		A31861A1229A266400FBA414 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31861A0229A266400FBA414 /* PageViewController.swift */; };
+		A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */; };
+		A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */; };
+		A393AA7C229E1C7300FCC06B /* MessageDisplayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */; };
+		A39D43EB229568A5009D760B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EA229568A5009D760B /* Channel.swift */; };
+		A39D43ED229568BD009D760B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EC229568BD009D760B /* Message.swift */; };
+		A39D43EF22956918009D760B /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39D43EE22956918009D760B /* Storage.swift */; };
+		CF4EBBBB65087632B4EEA604 /* Pods_SeQRcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8063DE073490FC5A24D1587D /* Pods_SeQRcast.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04271617D3F099E04B069998 /* Pods_QRGuard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRGuard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8063DE073490FC5A24D1587D /* Pods_SeQRcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeQRcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageQRViewController.swift; sourceTree = "<group>"; };
+		A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLogTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedMessageTableViewController.swift; sourceTree = "<group>"; };
+		A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A13C2F71229CEFF40071D3A5 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		A186A3C5229227A400BC9976 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		A199E1FE229DEB27007CC18A /* PublicKeyDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKeyDisplayViewController.swift; sourceTree = "<group>"; };
+		A19A30BE228A0D7E00C2E7C0 /* SeQRcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeQRcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A19A30C6228A0D7E00C2E7C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A19A30CB228A0D8000C2E7C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A19A30CD228A0D8000C2E7C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A19A30D5228A27F900C2E7C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1E4022F229A0CF50077F73F /* ScanPublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPublicKeyViewController.swift; sourceTree = "<group>"; };
+		A1E40231229A215A0077F73F /* ChannelQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelQRViewController.swift; sourceTree = "<group>"; };
+		A31861A0229A266400FBA414 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		A3634A432296A788008167B5 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = QRGuard/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewController.swift; sourceTree = "<group>"; };
+		A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedChannelsTableViewController.swift; sourceTree = "<group>"; };
+		A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayTableViewController.swift; sourceTree = "<group>"; };
+		A39D43EA229568A5009D760B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		A39D43EC229568BD009D760B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A39D43EE22956918009D760B /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		D30316D283E212763A363006 /* Pods-SeQRcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeQRcast.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeQRcast/Pods-SeQRcast.release.xcconfig"; sourceTree = "<group>"; };
+		E1BF73B07C997E0726F5D6D5 /* Pods-SeQRcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeQRcast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeQRcast/Pods-SeQRcast.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A19A30BB228A0D7E00C2E7C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4EBBBB65087632B4EEA604 /* Pods_SeQRcast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		694189E8BEDCACCFDCFE54D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1BF73B07C997E0726F5D6D5 /* Pods-SeQRcast.debug.xcconfig */,
+				D30316D283E212763A363006 /* Pods-SeQRcast.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A19A30B5228A0D7E00C2E7C0 = {
+			isa = PBXGroup;
+			children = (
+				A19A30C0228A0D7E00C2E7C0 /* SeQRcast */,
+				A19A30BF228A0D7E00C2E7C0 /* Products */,
+				694189E8BEDCACCFDCFE54D9 /* Pods */,
+				C699E9172719467BBC360071 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A19A30BF228A0D7E00C2E7C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A19A30BE228A0D7E00C2E7C0 /* SeQRcast.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A19A30C0228A0D7E00C2E7C0 /* SeQRcast */ = {
+			isa = PBXGroup;
+			children = (
+				A13C2F65229CEF060071D3A5 /* PublishMessageTableViewController.swift */,
+				A13C2F68229CEF160071D3A5 /* MessageLogTableViewController.swift */,
+				A13C2F67229CEF160071D3A5 /* MessageQRViewController.swift */,
+				A13C2F6B229CEF570071D3A5 /* MyMessageTableViewController.swift */,
+				A13C2F6D229CEF770071D3A5 /* SubscribedMessageTableViewController.swift */,
+				A13C2F6F229CEF8A0071D3A5 /* MapViewController.swift */,
+				A3634A432296A788008167B5 /* MyPlayground.playground */,
+				A39D43E922956837009D760B /* Model */,
+				A19A30C1228A0D7E00C2E7C0 /* AppDelegate.swift */,
+				A19A30C3228A0D7E00C2E7C0 /* ViewController.swift */,
+				A19A30C5228A0D7E00C2E7C0 /* Main.storyboard */,
+				A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */,
+				A19A30CD228A0D8000C2E7C0 /* Info.plist */,
+				A19A30D5228A27F900C2E7C0 /* Assets.xcassets */,
+				A186A3C5229227A400BC9976 /* QRCode.swift */,
+				A39D43EE22956918009D760B /* Storage.swift */,
+				A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */,
+				A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */,
+				A199E1FE229DEB27007CC18A /* PublicKeyDisplayViewController.swift */,
+				A1E4022F229A0CF50077F73F /* ScanPublicKeyViewController.swift */,
+				A1E40231229A215A0077F73F /* ChannelQRViewController.swift */,
+				A31861A0229A266400FBA414 /* PageViewController.swift */,
+				A393AA7B229E1C7300FCC06B /* MessageDisplayTableViewController.swift */,
+			);
+			path = SeQRcast;
+			sourceTree = "<group>";
+		};
+		A39D43E922956837009D760B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A39D43EA229568A5009D760B /* Channel.swift */,
+				A39D43EC229568BD009D760B /* Message.swift */,
+				A13C2F71229CEFF40071D3A5 /* Database.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C699E9172719467BBC360071 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04271617D3F099E04B069998 /* Pods_QRGuard.framework */,
+				8063DE073490FC5A24D1587D /* Pods_SeQRcast.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A19A30BD228A0D7E00C2E7C0 /* SeQRcast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A19A30D0228A0D8000C2E7C0 /* Build configuration list for PBXNativeTarget "SeQRcast" */;
+			buildPhases = (
+				F8F6CADA1B454CEAAD175DFD /* [CP] Check Pods Manifest.lock */,
+				A19A30BA228A0D7E00C2E7C0 /* Sources */,
+				A19A30BB228A0D7E00C2E7C0 /* Frameworks */,
+				A19A30BC228A0D7E00C2E7C0 /* Resources */,
+				97BB1C9CC81E9EEC5D083D8F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SeQRcast;
+			productName = QRGuard;
+			productReference = A19A30BE228A0D7E00C2E7C0 /* SeQRcast.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A19A30B6228A0D7E00C2E7C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Ground Zero";
+				TargetAttributes = {
+					A19A30BD228A0D7E00C2E7C0 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = A19A30B9228A0D7E00C2E7C0 /* Build configuration list for PBXProject "SeQRcast" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A19A30B5228A0D7E00C2E7C0;
+			productRefGroup = A19A30BF228A0D7E00C2E7C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A19A30BD228A0D7E00C2E7C0 /* SeQRcast */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A19A30BC228A0D7E00C2E7C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19A30CC228A0D8000C2E7C0 /* LaunchScreen.storyboard in Resources */,
+				A19A30D6228A27F900C2E7C0 /* Assets.xcassets in Resources */,
+				A19A30C7228A0D7E00C2E7C0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97BB1C9CC81E9EEC5D083D8F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SeQRcast/Pods-SeQRcast-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeQRcast/Pods-SeQRcast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8F6CADA1B454CEAAD175DFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SeQRcast-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A19A30BA228A0D7E00C2E7C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19A30C4228A0D7E00C2E7C0 /* ViewController.swift in Sources */,
+				A39D43EB229568A5009D760B /* Channel.swift in Sources */,
+				A39D43ED229568BD009D760B /* Message.swift in Sources */,
+				A19A30C2228A0D7E00C2E7C0 /* AppDelegate.swift in Sources */,
+				A1E40230229A0CF50077F73F /* ScanPublicKeyViewController.swift in Sources */,
+				A1E40232229A215A0077F73F /* ChannelQRViewController.swift in Sources */,
+				A186A3C6229227A400BC9976 /* QRCode.swift in Sources */,
+				A13C2F69229CEF160071D3A5 /* MessageQRViewController.swift in Sources */,
+				A13C2F66229CEF070071D3A5 /* PublishMessageTableViewController.swift in Sources */,
+				A199E1FF229DEB27007CC18A /* PublicKeyDisplayViewController.swift in Sources */,
+				A13C2F6E229CEF770071D3A5 /* SubscribedMessageTableViewController.swift in Sources */,
+				A39D43EF22956918009D760B /* Storage.swift in Sources */,
+				A31861A1229A266400FBA414 /* PageViewController.swift in Sources */,
+				A13C2F6C229CEF570071D3A5 /* MyMessageTableViewController.swift in Sources */,
+				A13C2F70229CEF8A0071D3A5 /* MapViewController.swift in Sources */,
+				A13C2F6A229CEF160071D3A5 /* MessageLogTableViewController.swift in Sources */,
+				A393AA7C229E1C7300FCC06B /* MessageDisplayTableViewController.swift in Sources */,
+				A3634A4522973465008167B5 /* MyChannelsTableViewController.swift in Sources */,
+				A13C2F72229CEFF40071D3A5 /* Database.swift in Sources */,
+				A3634A472297347B008167B5 /* SubscribedChannelsTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A19A30C5228A0D7E00C2E7C0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A19A30C6228A0D7E00C2E7C0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A19A30CB228A0D8000C2E7C0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A19A30CE228A0D8000C2E7C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A19A30CF228A0D8000C2E7C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A19A30D1228A0D8000C2E7C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1BF73B07C997E0726F5D6D5 /* Pods-SeQRcast.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6AMS9FJUD3;
+				INFOPLIST_FILE = "$(SRCROOT)/SeQRcast/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundzero.SeQRcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A19A30D2228A0D8000C2E7C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D30316D283E212763A363006 /* Pods-SeQRcast.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6AMS9FJUD3;
+				INFOPLIST_FILE = "$(SRCROOT)/SeQRcast/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.groundzero.SeQRcast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A19A30B9228A0D7E00C2E7C0 /* Build configuration list for PBXProject "SeQRcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19A30CE228A0D8000C2E7C0 /* Debug */,
+				A19A30CF228A0D8000C2E7C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A19A30D0228A0D8000C2E7C0 /* Build configuration list for PBXNativeTarget "SeQRcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19A30D1228A0D8000C2E7C0 /* Debug */,
+				A19A30D2228A0D8000C2E7C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A19A30B6228A0D7E00C2E7C0 /* Project object */;
+}
