@@ -100,7 +100,13 @@ class PublishMessageTableViewController: UITableViewController {
             return
         }
         
-        let message = Message(type: type, expires: datePicker.date, withContent: contentTextView.text, for: channel)
+        let content: String
+        switch type {
+        case .text: content = Message.createTextContent(fromText: contentTextView.text)
+        case .url: content = Message.createURLContent(fromURL: contentTextView.text)
+        }
+        
+        let message = Message(type: type, expires: datePicker.date, withContent: content, for: channel)
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageQRViewController") as! MessageQRViewController
         viewController.message = message
         self.navigationController?.pushViewController(viewController, animated: true)

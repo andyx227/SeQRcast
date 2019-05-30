@@ -38,7 +38,10 @@ class MessageDisplayTableViewController: UITableViewController {
         
         messageTypeLabel.text = message.type.string
         expirationDateLabel.text = dateFormatter.string(from: message.expirationDate)
-        contentLabel.text = message.content
+        switch message.type {
+        case .text: contentLabel.text = message.getTextInfo()
+        case .url: contentLabel.text = message.getURLInfo()
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,7 +50,7 @@ class MessageDisplayTableViewController: UITableViewController {
     }
     
     @IBAction func goToURL(_ sender: UIButton) {
-        let urlString = message.content.starts(with: "https://") || message.content.starts(with: "http://") ? message.content : "https://" + message.content
+        let urlString = message.getURLInfo().starts(with: "https://") || message.getURLInfo().starts(with: "http://") ? message.getURLInfo() : "https://" + message.getURLInfo()
         guard let url = URL(string: urlString) else {
         showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
         return

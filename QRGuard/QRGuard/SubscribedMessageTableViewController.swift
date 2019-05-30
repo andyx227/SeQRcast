@@ -36,14 +36,15 @@ class SubscribedMessageTableViewController: UITableViewController {
         scannedDateLabel.text = dateFormatter.string(from: messageLog.date)
         messageTypeLabel.text = messageLog.type.string
         expirationDateLabel.text = dateFormatter.string(from: messageLog.expirationDate)
-        contentLabel.text = messageLog.content
-        
-        let logoLength = qrImageView.frame.width * 0.3
+        switch messageLog.type {
+        case .text: contentLabel.text = messageLog.getTextInfo()
+        case .url: contentLabel.text = messageLog.getURLInfo()
+        }
         guard let qr = QRCode.generateQRCode(message: messageLog.encoded),
-            let exportLogo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let exportLogo = UIImage(named: "seqrcast_white")?.withBackground(color: UIColor.black),
             let exportCI = QRCode.generateExportableQRCode(qr, withLogo: exportLogo),
             let cgImage = CIContext().createCGImage(exportCI, from: exportCI.extent),
-            let logo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let logo = UIImage(named: "seqrcast_white")?.withBackground(color: UIColor.black),
             let custom = QRCode.generateCustomizedQRCode(qr, in: UIColor.black, withLogo: logo) else {
                 showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR code. Please try again.")
                 return
@@ -80,7 +81,7 @@ class SubscribedMessageTableViewController: UITableViewController {
     }
     
     @IBAction func goToURL(_ sender: UIButton) {
-        let urlString = messageLog.content.starts(with: "https://") || messageLog.content.starts(with: "http://") ? messageLog.content : "https://" + messageLog.content
+        let urlString = messageLog.getURLInfo().starts(with: "https://") || messageLog.getURLInfo().starts(with: "http://") ? messageLog.getURLInfo() : "https://" + messageLog.getURLInfo()
         guard let url = URL(string: urlString) else {
             showAlert(withTitle: "URL Error", message: "The message does not contain a valid URL.")
             return

@@ -24,6 +24,15 @@ enum MessageType: Int {
             }
         }
     }
+    
+    var prefix: String {
+        get {
+            switch self {
+            case .text: return "TEXT"
+            case .url: return "URLTO"
+            }
+        }
+    }
 }
 
 enum MessageFailure {
@@ -91,9 +100,8 @@ class Message {
             return (nil, .invalid)
         }
         
-        let typeIndex = decrypted.index(decrypted.startIndex, offsetBy: 1)
-        let dateIndex = decrypted.index(typeIndex, offsetBy: Message.DATE_FORMAT.count)
-        let dateString = String(decrypted[typeIndex ..< dateIndex])
+        let dateIndex = decrypted.index(decrypted.startIndex, offsetBy: Message.DATE_FORMAT.count)
+        let dateString = String(decrypted[decrypted.startIndex ..< dateIndex])
         let content = String(decrypted[dateIndex ..< decrypted.endIndex])
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Message.DATE_FORMAT
@@ -106,10 +114,16 @@ class Message {
             return (nil, .verificationFailed)
         }
         
-        guard let type = MessageType(rawValue: t),
-            let date = dateFormatter.date(from: dateString)
+        guard let date = dateFormatter.date(from: dateString)
             else {
             return (nil, .others)
+        }
+        
+        let type: MessageType
+        switch String(content.split(separator: ":")[0]) {
+        case MessageType.text.prefix: type = .text
+        case MessageType.url.prefix: type = .url
+        default: type = .text
         }
         
         let message = Message(type: type, expires: date, withContent: content, for: channel)
@@ -129,7 +143,7 @@ class Message {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Message.DATE_FORMAT
         let date = dateFormatter.string(from: expirationDate)
-        let body = "\(type.rawValue)\(date)\(content)"
+        let body = "\(date)\(content)"
         let doc = "\(channel.name)\(body)"
         
         let privateKey = try PrivateKey(base64Encoded: Storage.privateKey)
@@ -143,6 +157,24 @@ class Message {
         }
         
         return QR_TYPE_MESSAGE + channel.id + signature.base64String + encrypted
+    }
+    
+    static func createTextContent(fromText text: String) -> String {
+        return MessageType.text.prefix + ":" + text
+    }
+    
+    static func createURLContent(fromURL url: String) -> String {
+        return MessageType.url.prefix + ":" + url
+    }
+    
+    func getTextInfo() -> String {
+        let text = String(content.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)[1])
+        return text
+    }
+    
+    func getURLInfo() -> String {
+        let url = String(content.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)[1])
+        return url
     }
     
     func hasSafeURL(_ completion: @escaping (Bool) -> ()) {
