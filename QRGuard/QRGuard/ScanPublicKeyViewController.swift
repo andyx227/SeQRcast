@@ -107,10 +107,11 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
             createAlert(withTitle: "Key Read Error", withMessage: "The imported QR code does not contain a device key.")
             return
         }
+        /*
         if String(qrString.dropFirst(QR_TYPE_PUBLIC_KEY.count)) == Storage.publicKey {
             showAlert(withTitle: "Channel Share Error", message: "You cannot share a channel with yourself.")
             return
-        }
+        }*/
         
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "channelQRViewController") as! ChannelQRViewController
         viewController.channel = channelData

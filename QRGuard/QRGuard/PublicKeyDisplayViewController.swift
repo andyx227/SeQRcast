@@ -16,6 +16,8 @@ class PublicKeyDisplayViewController: UIViewController {
     
     @IBOutlet weak var exportImageButton: UIButton!
     
+    var exportImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,13 +29,20 @@ class PublicKeyDisplayViewController: UIViewController {
     func displayPublicKeyQRCode() {
         let myPublicKey = QR_TYPE_PUBLIC_KEY + Storage.publicKey
         let context = CIContext()
-        guard let qr = QRCode.generateQRCode(message: myPublicKey), let cgImage = context.createCGImage(qr, from: qr.extent) else {
+        let logoLength = imageView.frame.width * 0.3
+        guard let qr = QRCode.generateQRCode(message: myPublicKey),
+            let exportLogo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let exportCI = QRCode.generateExportableQRCode(qr, withLogo: exportLogo),
+            let cgImage = context.createCGImage(exportCI, from: exportCI.extent),
+            let logo = UIImage(named: "seqrcast")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.white),
+            let image = QRCode.generateCustomizedQRCode(qr, in: UIColor.white, withLogo: logo) else {
             showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR Code. Please try again.")
             return
         }
-        
-        imageView.image = UIImage(cgImage: cgImage)
+        exportImage = UIImage(cgImage: cgImage)
+        imageView.image = UIImage(ciImage: image)
     }
+    
     
     func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -58,7 +67,7 @@ class PublicKeyDisplayViewController: UIViewController {
     }
     
     @IBAction func exportImage(_ sender: UIButton) {
-        if let image = imageView.image {
+        if let image = exportImage {
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         else {

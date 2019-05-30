@@ -13,7 +13,7 @@ class ChannelQRViewController: UIViewController {
     @IBOutlet weak var exportImageButton: UIButton!
     
     var channelQR: CIImage?
-    
+    var exportImage: UIImage?
     var channel = MyChannel()
     var data: String = ""
     
@@ -32,12 +32,18 @@ class ChannelQRViewController: UIViewController {
     }
     
     func displayChannelQRCode() {
-        guard let qr = try? channel.encrypt(with: data), let image = CIContext().createCGImage(qr, from: qr.extent) else {
+        let logoLength = imageView.frame.width * 0.3
+        guard let qr = try? channel.encrypt(with: data),
+            let exportLogo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let exportCI = QRCode.generateExportableQRCode(qr, withLogo: exportLogo),
+            let cgImage = CIContext().createCGImage(exportCI, from: exportCI.extent),
+            let logo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let custom = QRCode.generateCustomizedQRCode(qr, in: UIColor.black, withLogo: logo) else {
             showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR code. Please try again.")
             return
         }
-        
-        imageView.image = UIImage(cgImage: image)
+        exportImage = UIImage(cgImage: cgImage)
+        imageView.image = UIImage(ciImage: custom)
     }
     
     func showAlert(withTitle title: String, message: String) {
@@ -50,7 +56,7 @@ class ChannelQRViewController: UIViewController {
     }
     
     @IBAction func exportImage(_ sender: UIButton) {
-        if let image = imageView.image {
+        if let image = exportImage {
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         else {

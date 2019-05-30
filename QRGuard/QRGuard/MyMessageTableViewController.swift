@@ -19,6 +19,7 @@ class MyMessageTableViewController: UITableViewController {
     @IBOutlet weak var exportImageButton: UIButton!
     
     var messageLog = MessageLog()
+    var exportImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +36,19 @@ class MyMessageTableViewController: UITableViewController {
         messageTypeLabel.text = messageLog.type.string
         expirationDateLabel.text = dateFormatter.string(from: messageLog.expirationDate)
         contentLabel.text = messageLog.content
-        
+        let logoLength = qrImageView.frame.width * 0.3
         guard let qr = QRCode.generateQRCode(message: messageLog.encoded),
-            let image = CIContext().createCGImage(qr, from: qr.extent) else {
+            let exportLogo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let exportCI = QRCode.generateExportableQRCode(qr, withLogo: exportLogo),
+            let cgImage = CIContext().createCGImage(exportCI, from: exportCI.extent),
+            let logo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
+            let custom = QRCode.generateCustomizedQRCode(qr, in: UIColor.black, withLogo: logo) else {
             showAlert(withTitle: "QR Code Generation Error", message: "There was an error generating the QR code. Please try again.")
             return
         }
         
-        qrImageView.image = UIImage(cgImage: image)
+        exportImage = UIImage(cgImage: cgImage)
+        qrImageView.image = UIImage(ciImage: custom)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -94,7 +100,7 @@ class MyMessageTableViewController: UITableViewController {
     }
     
     @IBAction func exportImage(_ sender: UIButton) {
-        if let image = qrImageView.image {
+        if let image = exportImage {
             UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         else {

@@ -54,6 +54,7 @@ class QRCode {
         
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {return nil}
         qrFilter.setValue(data, forKey: "inputMessage")
+        qrFilter.setValue("L", forKey: "inputCorrectionLevel")
         
         let qrOutput = qrFilter.outputImage
         guard let qrCode = qrOutput else {return nil}
@@ -63,6 +64,20 @@ class QRCode {
         let scaledQRCode = qrCode.transformed(by: transform)
         
         return scaledQRCode
+    }
+    
+    static func generateExportableQRCode(_ image: CIImage, withLogo logo: UIImage) -> CIImage? {
+        guard let cgImage = logo.cgImage else {
+            return nil
+        }
+        return image.combinedWith(CIImage(cgImage: cgImage))
+    }
+    
+    static func generateCustomizedQRCode(_ image: CIImage, in color: UIColor, withLogo logo: UIImage) -> CIImage? {
+        guard let cgImage = logo.cgImage else {
+            return nil
+        }
+        return image.imageWithColor(as: color)?.combinedWith(CIImage(cgImage: cgImage))
     }
     
     static func readFromImage(_ image: UIImage) -> String {
@@ -77,5 +92,80 @@ class QRCode {
         }
         
         return qrString
+    }
+}
+
+extension CIImage {
+    var inverted: CIImage? {
+        guard let invertedColorFilters = CIFilter(name: "CIColorInvert") else {
+            return nil
+        }
+        invertedColorFilters.setValue(self, forKey: "inputImage")
+        return invertedColorFilters.outputImage
+    }
+    
+    var blackTransparent: CIImage? {
+        guard let blackTransparentFilter = CIFilter(name: "CIMaskToAlpha") else {
+            return nil
+        }
+        blackTransparentFilter.setValue(self, forKey: "inputImage")
+        return blackTransparentFilter.outputImage
+    }
+    
+    var transparent: CIImage? {
+        return inverted?.blackTransparent
+    }
+    
+    func imageWithColor(as color: UIColor) -> CIImage? {
+        guard let transparent = transparent,
+            let filter = CIFilter(name: "CIMultiplyCompositing"),
+            let colorFilter = CIFilter(name: "CIConstantColorGenerator") else {
+            return nil
+        }
+        colorFilter.setValue(CIColor(color: color), forKey: kCIInputColorKey)
+        let colorImage = colorFilter.outputImage
+        filter.setValue(colorImage, forKey: kCIInputImageKey)
+        filter.setValue(transparent, forKey: kCIInputBackgroundImageKey)
+        return filter.outputImage
+    }
+    
+    func combinedWith(_ image: CIImage) -> CIImage? {
+        guard let combinedFilter = CIFilter(name: "CISourceOverCompositing") else {
+            return nil
+        }
+        let centerTransform = CGAffineTransform(translationX: extent.midX - (extent.size.width * 0.2 / 2), y: extent.midY - (extent.size.height * 0.2 / 2))
+        let scaleTransform = CGAffineTransform(scaleX: extent.size.width * 0.2 / image.extent.size.width, y: extent.size.height * 0.2 / image.extent.size.height)
+        combinedFilter.setValue(image.transformed(by: scaleTransform).transformed(by: centerTransform), forKey: "inputImage")
+        combinedFilter.setValue(self, forKey: "inputBackgroundImage")
+        return combinedFilter.outputImage!
+    }
+}
+
+extension UIImage {
+    func resizeTo(size: CGSize) -> UIImage {
+        /*
+        let renderer = UIGraphicsImageRenderer(size: size)
+        let image = renderer.image { (_) in
+            self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        }
+ */
+        return self
+    }
+    
+    func withBackground(color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, true, scale)
+        
+        guard let ctx = UIGraphicsGetCurrentContext() else {
+            return self
+        }
+        defer { UIGraphicsEndImageContext() }
+        
+        let rect = CGRect(origin: .zero, size: size)
+        ctx.setFillColor(color.cgColor)
+        ctx.fill(rect)
+        ctx.concatenate(CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: size.height))
+        ctx.draw(cgImage!, in: rect)
+        
+        return UIGraphicsGetImageFromCurrentImageContext() ?? self
     }
 }
