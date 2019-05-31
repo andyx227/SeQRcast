@@ -19,6 +19,7 @@ class MessageDisplayTableViewController: UITableViewController {
     
     var message = Message()
     var spinner = UIView()
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class MessageDisplayTableViewController: UITableViewController {
         if message.channel.publicKey != Storage.publicKey {
             self.navigationItem.backBarButtonItem?.isEnabled = false
             showSpinner()
-            CLLocationManager().requestLocation()
+            locationManager.requestLocation()
         }
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500.0
@@ -184,6 +185,7 @@ class MessageDisplayTableViewController: UITableViewController {
 
 extension MessageDisplayTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Here")
         guard let location = locations.first, let encoded = try? message.encryptedString() else {
             return
         }
@@ -194,6 +196,7 @@ extension MessageDisplayTableViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Here2")
         guard let encoded = try? message.encryptedString() else {
             return
         }

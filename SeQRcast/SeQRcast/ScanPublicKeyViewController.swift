@@ -23,7 +23,8 @@ class ScanPublicKeyViewController: UIViewController, AVCaptureMetadataOutputObje
         setShadowForButton(importImageButton)
         setShadowForButton(backBtn)
 
-        QRCode.scanQRCode(view: cameraView, delegate: self)
+        cameraView.isHidden = true
+        QRCode.scanQRCode(view: self.view, delegate: self)
         
         view.bringSubviewToFront(instructionText)
         view.bringSubviewToFront(importImageButton)

@@ -31,8 +31,9 @@ class PublicKeyDisplayViewController: UIViewController {
         let context = CIContext()
         let logoLength = imageView.frame.width * 0.3
         guard let qr = QRCode.generateQRCode(message: myPublicKey),
+            let dummy = QRCode.generateQRCode(message: "CAFEBABEjySa8fR3TZbu6cy3C9a1BsMEG5Au0tJ56Y0rt1X2QBk=" + String(repeating: "A", count: 344) + "FNlVl0xYxuu1p6nXR50GtT6oBYlaXOCmON5qmfOd92YcZsmH0fozD2ruNM8x5RMXE6jeTsEN51ahWACS4I9G4iyUfLi+EWQYk8U4MzS5h40="),
             let exportLogo = UIImage(named: "seqrcast_white")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.black),
-            let exportCI = QRCode.generateExportableQRCode(qr, withLogo: exportLogo),
+            let exportCI = QRCode.generateExportableQRCode(dummy, withLogo: exportLogo),
             let cgImage = context.createCGImage(exportCI, from: exportCI.extent),
             let logo = UIImage(named: "seqrcast")?.resizeTo(size: CGSize(width: logoLength, height: logoLength)).withBackground(color: UIColor.white),
             let image = QRCode.generateCustomizedQRCode(qr, in: UIColor.white, withLogo: logo) else {

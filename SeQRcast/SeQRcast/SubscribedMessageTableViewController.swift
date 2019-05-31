@@ -77,7 +77,10 @@ class SubscribedMessageTableViewController: UITableViewController {
         let nav = UINavigationController(rootViewController: viewController)
         nav.modalPresentationStyle = .overCurrentContext
         //viewController.modalPresentationStyle = .overCurrentContext
-        self.present(nav, animated: true)
+        let spinner = showSpinner()
+        self.present(nav, animated: true) {
+            self.removeSpinner(spinner)
+        }
     }
     
     @IBAction func goToURL(_ sender: UIButton) {
@@ -136,6 +139,25 @@ class SubscribedMessageTableViewController: UITableViewController {
         }
         alert.addAction(action)
         self.present(alert, animated: true)
+    }
+    
+    func showSpinner() -> UIView {
+        let spinner = UIView.init(frame: self.view.bounds)
+        DispatchQueue.main.async {
+            spinner.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue:0.5, alpha: 0.5)
+            let activity = UIActivityIndicatorView.init(style: .whiteLarge)
+            activity.startAnimating()
+            activity.center = spinner.center
+            spinner.addSubview(activity)
+            self.view.addSubview(spinner)
+        }
+        return spinner
+    }
+    
+    func removeSpinner(_ spinner: UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
     }
     
     /*

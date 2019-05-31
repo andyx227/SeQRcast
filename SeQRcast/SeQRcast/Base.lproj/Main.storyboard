@@ -13,7 +13,7 @@
         <!--My Channels-->
         <scene sceneID="iME-Vf-L5p">
             <objects>
-                <tableViewController storyboardIdentifier="myChannelsTableViewController" id="KfY-93-lay" customClass="MyChannelsTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myChannelsTableViewController" id="KfY-93-lay" customClass="MyChannelsTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HMP-yj-hE5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,17 +65,17 @@
         <!--Page View Controller-->
         <scene sceneID="SXn-UT-Jhb">
             <objects>
-                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="U11-ju-Ymn" customClass="PageViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="U11-ju-Ymn" customClass="PageViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="bXk-5K-VCt"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKv-x3-qIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316" y="86"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="mainViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r05-Bn-jyb" secondAttribute="bottom" constant="15" id="dcF-2n-pML"/>
                             <constraint firstItem="r05-Bn-jyb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="ds7-Oo-IRE"/>
                             <constraint firstAttribute="trailing" secondItem="stq-Se-Obe" secondAttribute="trailing" id="hab-q9-B5q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="stq-Se-Obe" secondAttribute="bottom" id="mEd-BJ-0ZB"/>
+                            <constraint firstAttribute="bottom" secondItem="stq-Se-Obe" secondAttribute="bottom" id="mEd-BJ-0ZB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r05-Bn-jyb" secondAttribute="trailing" constant="15" id="zwo-s3-MAx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -139,7 +139,7 @@
         <!--Subscribed Channels-->
         <scene sceneID="Qye-3E-vQd">
             <objects>
-                <tableViewController storyboardIdentifier="subscribedChannelsTableViewController" id="BGO-ng-Hod" customClass="SubscribedChannelsTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="subscribedChannelsTableViewController" id="BGO-ng-Hod" customClass="SubscribedChannelsTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="QNb-6B-1Ti">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +185,7 @@
         <!--Public Key Display View Controller-->
         <scene sceneID="AbH-FF-ft3">
             <objects>
-                <viewController storyboardIdentifier="publicKeyDisplayViewController" id="bja-xg-KeL" customClass="PublicKeyDisplayViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="publicKeyDisplayViewController" id="bja-xg-KeL" customClass="PublicKeyDisplayViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WLb-v4-Y7h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +252,7 @@
         <!--Scan Public Key View Controller-->
         <scene sceneID="DKl-hy-Uqp">
             <objects>
-                <viewController storyboardIdentifier="scanPublicKeyViewController" id="Wpw-Wg-4bE" customClass="ScanPublicKeyViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scanPublicKeyViewController" id="Wpw-Wg-4bE" customClass="ScanPublicKeyViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mfx-DK-sFp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,7 +333,7 @@
         <!--Share Channel QR Code-->
         <scene sceneID="w4d-GS-yV9">
             <objects>
-                <viewController storyboardIdentifier="channelQRViewController" id="fUr-Dn-ZXs" customClass="ChannelQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="channelQRViewController" id="fUr-Dn-ZXs" customClass="ChannelQRViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ax-d6-PeI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,7 +396,7 @@
         <!--Publish Message-->
         <scene sceneID="KcR-Ao-1LV">
             <objects>
-                <tableViewController storyboardIdentifier="publishMessageTableViewController" id="TMs-hc-Wf7" customClass="PublishMessageTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="publishMessageTableViewController" id="TMs-hc-Wf7" customClass="PublishMessageTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bhz-8x-hbz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -550,7 +550,7 @@
         <!--Message QR Code-->
         <scene sceneID="x1w-sH-NAr">
             <objects>
-                <viewController storyboardIdentifier="messageQRViewController" id="Elw-H7-LR3" customClass="MessageQRViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageQRViewController" id="Elw-H7-LR3" customClass="MessageQRViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="32q-1G-B9F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -613,7 +613,7 @@
         <!--Message Log-->
         <scene sceneID="9EJ-IS-fs0">
             <objects>
-                <tableViewController storyboardIdentifier="messageLogTableViewController" id="DNq-Hs-DRP" customClass="MessageLogTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="messageLogTableViewController" id="DNq-Hs-DRP" customClass="MessageLogTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ccm-7m-QtJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,7 +652,7 @@
         <!--Message-->
         <scene sceneID="urn-FE-fpY">
             <objects>
-                <tableViewController storyboardIdentifier="myMessageTableViewController" id="HRB-U7-kNi" customClass="MyMessageTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myMessageTableViewController" id="HRB-U7-kNi" customClass="MyMessageTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZbN-BW-9Ml">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,7 +853,7 @@
         <!--Message-->
         <scene sceneID="dha-ZE-KLM">
             <objects>
-                <tableViewController storyboardIdentifier="subscribedMessageTableViewController" id="aM8-f4-J1E" customClass="SubscribedMessageTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="subscribedMessageTableViewController" id="aM8-f4-J1E" customClass="SubscribedMessageTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Gp-xa-O3s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1084,7 +1084,7 @@
         <!--Map View Controller-->
         <scene sceneID="WDb-65-5ys">
             <objects>
-                <viewController storyboardIdentifier="mapViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fDV-fd-DcS" customClass="MapViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fDV-fd-DcS" customClass="MapViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="zs9-Ua-k9N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1151,7 +1151,7 @@
         <!--Message-->
         <scene sceneID="Kbn-h9-f3D">
             <objects>
-                <tableViewController storyboardIdentifier="messageDisplayTableViewController" id="jgh-F7-wvQ" customClass="MessageDisplayTableViewController" customModule="QRGuard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="messageDisplayTableViewController" id="jgh-F7-wvQ" customClass="MessageDisplayTableViewController" customModule="SeQRcast" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1n-tX-k1i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

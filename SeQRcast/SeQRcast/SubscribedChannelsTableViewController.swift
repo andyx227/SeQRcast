@@ -29,6 +29,7 @@ class SubscribedChannelsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        channels = Storage.subscribedChannels.enumerated().compactMap{ SubscribedChannel(at: $0.offset ) }
         tableView.reloadData()
     }
 

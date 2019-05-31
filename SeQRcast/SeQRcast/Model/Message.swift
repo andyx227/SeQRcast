@@ -110,9 +110,6 @@ class Message {
         let doc = "\(channel.name)\(decrypted)"
         let document = try ClearMessage(string: doc, using: .utf8)
         let publicKey = try PublicKey(base64Encoded: channel.publicKey)
-        if try !document.verify(with: publicKey, signature: signature, digestType: .sha256) {
-            return (nil, .verificationFailed)
-        }
         
         guard let date = dateFormatter.date(from: dateString)
             else {
@@ -127,6 +124,10 @@ class Message {
         }
         
         let message = Message(type: type, expires: date, withContent: content, for: channel)
+        
+        if try !document.verify(with: publicKey, signature: signature, digestType: .sha256) {
+            return (message, .verificationFailed)
+        }
         
         if date.timeIntervalSince(Date()) < 0.0 {
             return (message, .expired)
@@ -189,7 +190,7 @@ class Message {
                 "platformTypes": ["ANY_PLATFORM"],
                 "threatEntryTypes": ["URL"],
                 "threatEntries": [
-                    ["url": content]
+                    ["url": getURLInfo()]
                 ]
             ]
         ]

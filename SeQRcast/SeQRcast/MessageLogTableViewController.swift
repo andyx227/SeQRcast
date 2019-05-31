@@ -64,8 +64,9 @@ class MessageLogTableViewController: UITableViewController {
             viewController.messageLog = messageLogs[indexPath.row]
             self.navigationController?.pushViewController(viewController, animated: true)
         case .subscribed:
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "subscribedTableViewController") as! SubscribedMessageTableViewController
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "subscribedMessageTableViewController") as! SubscribedMessageTableViewController
             viewController.messageLog = messageLogs[indexPath.row]
+            self.navigationController?.pushViewController(viewController, animated: true)
             
         }
     }

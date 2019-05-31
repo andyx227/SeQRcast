@@ -24,6 +24,7 @@ class MyMessageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500.0
         setShadowForButton(exportImageButton)

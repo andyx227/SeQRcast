@@ -15,16 +15,21 @@ import CommonCrypto
 import SwiftyRSA
 import CoreLocation
 
-class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class MainViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var importImageButton: UIButton!
     @IBOutlet weak var cameraView: UIView!
+    
+    var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        QRCode.scanQRCode(view: cameraView, delegate: self)
+        cameraView.isHidden = true
+        QRCode.scanQRCode(view: self.view, delegate: self)
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         //swipeDetector()
         setShadowForButton(importImageButton)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -86,13 +91,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 viewMessage(message, withWarning: "This message has already expired. Do you still want to view this message?")
             case (nil, .notSubscribed):
                 showAlert(withTitle: "Message Read Error", message: "You are not subscribed to the channel that published this message.")
-            case (nil, .verificationFailed):
-                showAlert(withTitle: "Message Read Error", message: "The message has been compromised.")
+            case (.some(let message), .verificationFailed):
+                viewMessage(message, withWarning: "The message has been compromised. Do you still want to view this message?")
             case (nil, .others):
                 showAlert(withTitle: "Message Read Error", message: "There was an error reading this message. Please try again.")
             case (.some(let message), .none):
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "messageDisplayTableViewController") as! MessageDisplayTableViewController
                 viewController.message = message
+                viewController.locationManager = locationManager
+                locationManager.delegate = viewController
                 self.navigationController?.pushViewController(viewController, animated: true)
             default: ()
             }
@@ -262,7 +269,7 @@ extension UIViewController {
     }
 }
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let importedImage = info[.originalImage] as? UIImage else {
             dismiss(animated: true)

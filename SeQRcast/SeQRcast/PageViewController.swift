@@ -28,7 +28,7 @@ class PageViewController: UIPageViewController {
     }
     
     func getMainViewController() -> UIViewController {
-        let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainViewController") as! ViewController
+        let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
         let drawer = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "publicKeyDisplayViewController") as! PublicKeyDisplayViewController
         let pulley = PulleyViewController(contentViewController: main, drawerViewController: drawer)
         pulley.backgroundDimmingOpacity = 0.0
