@@ -122,7 +122,6 @@
 				A19A30CA228A0D8000C2E7C0 /* LaunchScreen.storyboard */,
 				A19A30CD228A0D8000C2E7C0 /* Info.plist */,
 				A19A30D5228A27F900C2E7C0 /* Assets.xcassets */,
-				A186A3C5229227A400BC9976 /* QRCode.swift */,
 				A39D43EE22956918009D760B /* Storage.swift */,
 				A3634A4422973465008167B5 /* MyChannelsTableViewController.swift */,
 				A3634A462297347B008167B5 /* SubscribedChannelsTableViewController.swift */,
@@ -138,6 +137,7 @@
 		A39D43E922956837009D760B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A186A3C5229227A400BC9976 /* QRCode.swift */,
 				A39D43EA229568A5009D760B /* Channel.swift */,
 				A39D43EC229568BD009D760B /* Message.swift */,
 				A13C2F71229CEFF40071D3A5 /* Database.swift */,
