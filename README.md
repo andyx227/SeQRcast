@@ -1,5 +1,9 @@
 # SeQRcast Documentation
 
+**This is the prototype of the Seqrcast iOS app, created for a computer security course at UC Davis.**
+
+**Of course, this is NOT the code of the offical app! The official app is currently released for public beta test on Apple TestFlight: https://testflight.apple.com/join/341lNcDU**. See you there!
+
 ## Making QR codes more secure.
 
 Team Ground Zero: Tony Woo, Andy Xue, Noshin Kamal, Manpreet Kang
